@@ -1,0 +1,11 @@
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.define "db-server" do |db|
+    db.vm.network "forwarded_port", guest: 3306, host: 13306
+    db.vm.network "forwarded_port", guest: 80, host: 18306
+    db.vm.provision "shell", path: "bootstrap.sh"
+  end
+
+end
