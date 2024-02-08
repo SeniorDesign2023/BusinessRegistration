@@ -1,0 +1,56 @@
+.form-filler-name{
+     font-family: kadwa;
+     font-weight: bold;
+     font-size: 64px;
+     padding-right: 35%;
+     padding-left: 35%;
+     margin-bottom: 10px;
+}
+
+a {
+    color: #2E80E0;
+}
+
+h3 {
+    font-weight: lighter;
+    padding-right: 37%;
+    padding-left: 37%; 
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 24px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-weight: 300;
+    font-size: 26px;
+    padding-right: 26%;
+    padding-left: 26%; 
+    padding-bottom: 1.5%;
+}
+
+.form-input {
+    font-size: 24px;
+    font-weight: lighter;
+    margin-top: 2%;
+    border: none;
+    background-color: #eae8e8;
+ /* You may need to change the text color for visibility */
+    height: 75px;
+    width: 630px;
+}
+
+.submit{
+   font-size: 26px;
+    margin-left: 26%; 
+    margin-right: 26%;
+    margin-top: 2%;
+    border: none;
+    background-color: #dad8d8;
+    color: #000000; /* You may need to change the text color for visibility */
+    height: 75px;
+    width: 630px;
+   
+}
