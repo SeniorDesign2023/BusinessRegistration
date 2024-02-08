@@ -2,17 +2,20 @@
 
 import React, { useState } from 'react';
 import './LogInPage.css'
-
+import { useRouter } from 'next/router';
 
 export default function LogInPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const router = useRouter();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission logic here
         console.log(`Email: ${email}, Password: ${password}`);
+        router.push('/mainpage');
     };
+
 
     return (
         <div>
