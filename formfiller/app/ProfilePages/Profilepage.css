@@ -1,29 +1,81 @@
 label {
     display: flex;
-    margin-left: 30px;
+    padding-right: 20px;
     flex-direction: column;
     justify-content: flex-start;
-    font-weight: 300;
-    font-size: 26px;
-    padding-right: 26%;
-    padding-left: 26%; 
-    padding-bottom: 1.5%;
+    font-weight: 400;
+    font-size: 24px; 
+}
+
+.exit{
+color: #2E80E0;
+}
+
+.email{
+    margin-left: 200px;
+}
+
+.email-input{
+    height: 33px;
+    width: 357px;
+}
+
+.address{
+    margin-left: 200px;
+}
+
+.address-input{
+    height: 108px;
+    width: 682px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    background-color: #e6e4e4;
+    border: none;
+}
+
+.form-left{
+    margin-left: 200px;
+    padding-right: 20px;
+    /* padding-bottom: 1.5%; */
+}
+
+.first-line{
+    display: flex;
+    flex-direction: row; 
+    gap: 10px;
+}
+
+.end-line{
+    display: flex;
+    flex-direction: row; 
+    gap: 200px;
 }
 
 .first-name{
     display: flex;
     flex-direction: row;
-
 }
 
 .top {
     margin-left: 30px;
     display: flex;
     flex-direction: row;
-    gap: 30px; 
+    gap: 120px; 
+    font-size: 23px;
 }
 
 input{
+    margin-top: 25px;
+    margin-bottom: 20px;
     height: 33px;
     width: 242px;
+    background-color: #e6e4e4;
+    border: none;
+}
+
+.submit{
+    margin-left: 500px;
+    font-size: 24px;
+    height: 52px;
+    width: 182px;
 }

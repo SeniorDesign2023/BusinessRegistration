@@ -1,33 +1,45 @@
-import React, { useState } from 'react';
-import Circle from "../ExtraComponents/Circle"
 import './MainPage.css'
-import OrganizationList from '../Organizations/OrganizationList';
 import AllPage from '../FormViews/AllPage'
 import AssignedPage from '../FormViews/AssignedPage';
+import Circle from "../ExtraComponents/Circle"
+import CreatedPage from '../FormViews/Created';
 import Draft from '../FormViews/Draft';
+import OrganizationList from '../Organizations/OrganizationList';
+import React, { useState } from 'react';
 import SubmittedPage from '../FormViews/SubmittedPage';
 import { useRouter } from 'next/router';
 
 
 export default function MainPage() {
     const [selectedPage, setSelectedPage] = useState('All');
-    const [selectedOrg, setSelectedOrg] = useState('Organization 1');
+   // const [selectedOrg, setSelectedOrg] = useState('Organization 1');
+   const [selectedOrgName, setSelectedOrgName] = useState('Organization 1');
+    const [selectedOrgRole, setSelectedOrgRole] = useState('Normal');
+
+    const setSelectedOrg = (name, role) => {
+        setSelectedOrgName(name);
+        setSelectedOrgRole(role);
+    }; 
+
     const router = useRouter();
 
     const renderPage = () => {
         switch(selectedPage) {
             case 'All':
-                return <AllPage organization={selectedOrg}/>;
+                return <AllPage organization={selectedOrgName}/>;
             case 'Assigned':
-                return <AssignedPage organization={selectedOrg}/>;
+                return <AssignedPage organization={selectedOrgName}/>;
             case 'Drafts':
-              return <Draft organization={selectedOrg}/>;
+                return <Draft organization={selectedOrgName}/>;
             case 'Submitted':
-              return <SubmittedPage organization={selectedOrg}/>;
+                return <SubmittedPage organization={selectedOrgName}/>;
+            case 'Created':
+                return selectedOrgRole === 'Admin' ? <CreatedPage organization={selectedOrgName}/> : null;
             default:
-                return <AllPage organization={selectedOrg}/>;
+                return <AllPage organization={selectedOrgName}/>;
         }
     };
+    
 
     const navigateToProfile = () => {
         router.push('/profile');
@@ -58,6 +70,7 @@ export default function MainPage() {
                     <h5 onClick={() => setSelectedPage('Assigned')}>Assigned </h5>
                     <h5 onClick={() => setSelectedPage('Drafts')}>Drafts </h5>
                     <h5 onClick={() => setSelectedPage('Submitted')}>Submitted </h5>
+                    {selectedOrgRole === 'Admin' && <h5 onClick={() => setSelectedPage('Created')}>Created</h5>}
              </div>
              <div className = "line"></div>
              <div>

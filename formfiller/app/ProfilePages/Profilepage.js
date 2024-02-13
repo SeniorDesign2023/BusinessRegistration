@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import './Profilepage.css'
 
+
 export default function Profilepage() {
 
     const [firstName, setFirstName] = useState('');
     const [middleName, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [addres, setAddress] = useState('');
+    const [address, setAddress] = useState('');
     const [zipCode, setZipCode] = useState(0);
     const [dob, setDob] = useState('');
 
@@ -21,15 +22,19 @@ export default function Profilepage() {
         router.push('/mainpage');
     };
 
+    const navigateToMainPage = () => {
+        router.push('/mainpage');
+    };
+
     return (
         <div>
          <div className='top'>
-            <h3> Back</h3>
+            <h3 className='exit' onClick={navigateToMainPage}>  Exit </h3>
             <h3> Profile Information</h3>
          </div>
          <form onSubmit={handleSubmit}>
             <div className = "first-line">
-            <label>
+            <label className='form-left'>
                 First name
                 <input className='form-input'
                     type="text"
@@ -57,19 +62,31 @@ export default function Profilepage() {
                 />
             </label>
             </div>
-            <label>
+            <label className='email'>
                 Email Address
-                <input className='form-input'
+                <input className='email-input'
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
                 />
             </label>
-            <label>
+
+            <label className='address'>
+                Address
+                <textarea className='address-input'
+                    type="text"
+                    value={address}
+                    onChange={e => setAddress(e.target.value)}
+                    required
+                />
+            </label>
+            
+            <div className = "end-line">
+            <label className='form-left'>
                 Zip Code
                 <input className='form-input'
-                    type="email"
+                    type="text"
                     value={zipCode}
                     onChange={e => setZipCode(e.target.value)}
                     required
@@ -78,12 +95,13 @@ export default function Profilepage() {
             <label>
                 Date of Birth
                 <input className='form-input'
-                    type="email"
+                    type="text"
                     value={dob}
                     onChange={e => setDob(e.target.value)}
                     required
                 />
             </label>
+            </div>
           
             <input type="submit" value="Save" className='submit'/>
         </form>
