@@ -45,6 +45,10 @@ export default function MainPage() {
         router.push('/profile');
     };
 
+    const navigateToCreateForm = () => {
+        router.push('/createform');
+    };
+
     return (
         <div className='mainpage'>
         <div className ='profile-line'>
@@ -71,7 +75,9 @@ export default function MainPage() {
                     <h5 onClick={() => setSelectedPage('Drafts')}>Drafts </h5>
                     <h5 onClick={() => setSelectedPage('Submitted')}>Submitted </h5>
                     {selectedOrgRole === 'Admin' && <h5 onClick={() => setSelectedPage('Created')}>Created</h5>}
+                    {selectedOrgRole === 'Admin' && <div className='create-form' onClick={navigateToCreateForm}></div>}
              </div>
+    
              <div className = "line"></div>
              <div>
                     {renderPage()}

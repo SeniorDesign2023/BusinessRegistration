@@ -1,0 +1,42 @@
+.create-form-top{
+    margin-right: 38%;
+    margin-left: 38%;
+    padding-right: 20px;
+    font-size: 48px;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 22px;
+    margin-left: 238px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.form-name{
+    width: 632px;
+    height: 42px;
+    border: none;
+    background-color: #e6e4e4;
+    margin-top: 22px;
+   
+}
+
+.json-input{
+    border: none;
+    background-color: #e6e4e4;
+    margin-top: 25px;
+    height: 290px;
+    width: 1093px;
+}
+
+.submit{
+    margin-left: 35%;
+    width: 470px;
+    height: 65px;
+    border: none;
+    font-size: 22px;
+}
+
