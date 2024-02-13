@@ -1,5 +1,5 @@
 import MainPage from '../app/BasicPages/MainPage';
 
-export default function Login() {
+export default function mainP() {
     return <MainPage/>;
 }

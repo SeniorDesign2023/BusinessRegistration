@@ -2,15 +2,13 @@ import React from 'react';
 import FormIndividual from './FormIndividual';
 
 
-export default function Draft() {
+export default function Draft({organization}) {
     return (
         <div>
-            <FormIndividual name = "Example form 1"/>
-            <FormIndividual name = "Example form 2"/>
-            <FormIndividual name = "Example form 3"/>
-            <FormIndividual name = "Example form 4"/>
-            
-           
+            <FormIndividual name ={organization + "form 1"}/>
+            <FormIndividual name ={organization + "form 2"}/>
+            <FormIndividual name ={organization + "form 3"}/>
+            <FormIndividual name ={organization + "form 4"}/>
         </div>
     );
 }

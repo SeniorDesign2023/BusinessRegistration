@@ -6,30 +6,38 @@ import AllPage from '../FormViews/AllPage'
 import AssignedPage from '../FormViews/AssignedPage';
 import Draft from '../FormViews/Draft';
 import SubmittedPage from '../FormViews/SubmittedPage';
+import { useRouter } from 'next/router';
 
 
 export default function MainPage() {
     const [selectedPage, setSelectedPage] = useState('All');
+    const [selectedOrg, setSelectedOrg] = useState('Organization 1');
+    const router = useRouter();
 
     const renderPage = () => {
         switch(selectedPage) {
             case 'All':
-                return <AllPage />;
+                return <AllPage organization={selectedOrg}/>;
             case 'Assigned':
-                return <AssignedPage />;
+                return <AssignedPage organization={selectedOrg}/>;
             case 'Drafts':
-              return <Draft />;
+              return <Draft organization={selectedOrg}/>;
             case 'Submitted':
-              return <SubmittedPage />;
+              return <SubmittedPage organization={selectedOrg}/>;
             default:
-                return <AllPage />;
+                return <AllPage organization={selectedOrg}/>;
         }
     };
+
+    const navigateToProfile = () => {
+        router.push('/profile');
+    };
+
     return (
         <div className='mainpage'>
         <div className ='profile-line'>
-            <div className='profile'>
-                <Circle size="55px"/>
+            <div className='profile' onClick={navigateToProfile} >
+                 <Circle size="45px" />
             </div>
         </div>
 
@@ -40,7 +48,7 @@ export default function MainPage() {
                 <h3 className='organization-plus'> + </h3>
              </div>
              <div>
-                  <OrganizationList/>
+                  <OrganizationList setSelectedOrg={setSelectedOrg}/>
              </div>
         </div>
         <div className='forms'>

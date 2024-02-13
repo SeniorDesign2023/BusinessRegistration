@@ -1,0 +1,29 @@
+label {
+    display: flex;
+    margin-left: 30px;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-weight: 300;
+    font-size: 26px;
+    padding-right: 26%;
+    padding-left: 26%; 
+    padding-bottom: 1.5%;
+}
+
+.first-name{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.top {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px; 
+}
+
+input{
+    height: 33px;
+    width: 242px;
+}

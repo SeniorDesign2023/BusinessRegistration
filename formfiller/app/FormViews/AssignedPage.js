@@ -2,15 +2,16 @@ import React from 'react';
 import FormIndividual from './FormIndividual';
 
 
-export default function AssignedPage() {
+export default function AssignedPage({organization}) {
     return (
         <div>
-            <FormIndividual name = "Example form 1"/>
-            <FormIndividual name = "Example form 2"/>
-            <FormIndividual name = "Example form 3"/>
-            <FormIndividual name = "Example form 4"/>
-            <FormIndividual name = "Example form 5"/>
-            <FormIndividual name = "Example form 6"/>
+            <FormIndividual name ={organization + "form 1"}/>
+            <FormIndividual name ={organization + "form 2"}/>
+            <FormIndividual name ={organization + "form 3"}/>
+            <FormIndividual name ={organization + "form 4"}/>
+            <FormIndividual name ={organization + "form 5"}/>
+            <FormIndividual name ={organization + "form 6"}/>
+
            
         </div>
     );

@@ -5,12 +5,12 @@
 .profile {
    height: max-content;
     margin-top: 741px;
-    margin-left: 10%;
-    margin-bottom: 12%
+    margin-left: 5px;
+    margin-bottom: 10px;
     
 }
 .profile-line{
-    width: 5%;
+    width: 4%;
     height: 100vh;
     background-color: #D9D9D9; 
 }
