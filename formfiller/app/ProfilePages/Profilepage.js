@@ -26,6 +26,10 @@ export default function Profilepage() {
         router.push('/mainpage');
     };
 
+    const navigateToHomePage = () => {
+        router.push('/home');
+    };
+
     return (
         <div>
          <div className='top'>
@@ -103,7 +107,11 @@ export default function Profilepage() {
             </label>
             </div>
           
+           <div className='bottom'>
             <input type="submit" value="Save" className='submit'/>
+            {/* will design this better */}
+            <div className='logout' onClick={navigateToHomePage}> <h3 className='logout-text'> Log out</h3> </div>
+            </div>
         </form>
         </div>
     );

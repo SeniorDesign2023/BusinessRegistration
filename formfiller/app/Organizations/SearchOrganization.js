@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import OrganizationIndividual from './OrganizationIndividual';
+import "./SearchOrganization.css"
 
 export default function SearchOrganization() {
     const [organization, setOrganization] = useState('');
@@ -22,6 +23,8 @@ export default function SearchOrganization() {
             
             <input type="submit" value="enter" className='submit' />
         </form>
+
+        <div className='create'> <h3 className='create-text'> Create Organization</h3></div>
         </div>
     );
 }
