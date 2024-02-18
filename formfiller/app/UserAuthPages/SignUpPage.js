@@ -1,8 +1,8 @@
-
-
 import React, { useState } from 'react';
 import './LogInPage.css'
 import { useRouter } from 'next/router';
+
+import post from "../../lib/post"
 
 export default function SignUpPage() {
     const [fullname, setFullName] = useState('');
@@ -13,8 +13,12 @@ export default function SignUpPage() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission logic here
-        console.log(`Email: ${email}, Password: ${password}`);
-        router.push('/mainpage');
+        //console.log(`Email: ${email}, Password: ${password}`);
+        //router.push('/mainpage');
+        post("signup", {
+            email,
+            password
+        })
     };
 
     return (
