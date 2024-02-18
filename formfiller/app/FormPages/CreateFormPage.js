@@ -16,11 +16,18 @@ export default function CreateFormPage() {
        
         router.push('/mainpage');
     };
+    
+    const navigateToMainPage = () => {
+        router.push('/mainpage');
+    };
 
 
     return (
         <div>
-        <h1 className='create-form-top'> Create a form</h1>
+        <div className= 'create-form-top' >
+        <h2 className = "exit" onClick={navigateToMainPage}> Exit </h2>
+        <h1 className='create-form-top-create'> Create a Form</h1>
+        </div>
        
         <form onSubmit={handleSubmit}>
             <label>
