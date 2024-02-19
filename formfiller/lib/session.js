@@ -4,7 +4,7 @@ const TIMEOUT = 3000 //30 minutes 00 seconds
 
 async function makeCookie(req, res, user, id = undefined) {
 
-	record = await database.query("SELECT * FROM User WHERE Email = ?", [user])
+	record = await database.query("SELECT * FROM USER WHERE Email = ?", [user])
 		
 	var user = record[0]
 	req.session.user = user

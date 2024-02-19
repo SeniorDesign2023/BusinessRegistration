@@ -1,15 +1,3 @@
-// const mysql = require("mysql");
-
-// var connection = mysql.createConnection({
-//     host: "localhost",
-//     port: "13306",
-//     user: "dbuser",
-//     password: "userpass",
-//     database: "Form_Filler_DB"
-// });
-
-//connection.connect();
-
 const crypto = require("crypto")
 const { Buffer } = require("buffer")
 
@@ -18,15 +6,16 @@ const database = require("./database")
 
 module.exports = async function signup(req, res) {
 
-    var records = database.query("SELECT * FROM USER WHERE Email = ?", [user])
+    var records = await database.query("SELECT * FROM USER WHERE Email = ?", [req.body.email])
     if (records.length > 0) {
-        res.redirect(303, "/signup")
+        res.json({redirect: "/signup"})
+        return
     }
 
     await createAccount(req.body.email, req.body.password)
-    await makeCookie(req, res, req.body.email)
+    await session.makeCookie(req, res, req.body.email)
     
-    res.redirect(303, "/homepage")
+    res.json({redirect: "/mainpage"})
 
 }
 
@@ -37,29 +26,14 @@ function genPasswordHash(pass, salt) {
         .digest()
 }
 
-async function createAccount(un, pwd) {
+function createAccount(un, pwd) {
  
     var salt = crypto.randomBytes(32)
     var hash = genPasswordHash(pwd, salt)
     
     var final = Buffer.concat([salt, hash], 64)
 
-    return database.query('INSERT INTO USER (Email, Password) VALUES (?, ?)', [un, final], function (error, results, fields) {
-        if (error) throw error;
-        console.log('Inserted into database:', results);
-      });
-    
+    return database.query('INSERT INTO USER (Email, Password) VALUES (?, ?)', [un, final])
+        .then(() => console.log('Inserted into database:', results))
+        
 }
-
-/*function main() {
-    try {
-        gentestacc("123@123.com","456")
-    } catch (error) {
-        console.error(error);
-    } finally {
-        connection.end();
-    }
-}
-
-
-main()*/

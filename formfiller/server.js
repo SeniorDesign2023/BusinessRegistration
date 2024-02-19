@@ -1,5 +1,6 @@
 const express = require("express")
 const session = require("express-session")
+const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const next = require("next")
 
@@ -16,16 +17,18 @@ nextApp.prepare().then(async () => {
 
 	const server = express()
 	
-	server.post("/post", (req, res) => dispatch(req, res, handle))
-	server.get('*', (req, res) => handle(req, res))
-
+	server.use(bodyParser.urlencoded({extended: true}))
+	server.use(bodyParser.json())
 	server.use(cookieParser())
 	server.use(session({
 		resave: false,
 		saveUninitialized: false,
-		secret: credentials.cookieSecret
+		secret: "123456"
 	}))
 	
+	server.post("/post", (req, res) => dispatch(req, res, handle))
+	server.get('*', (req, res) => handle(req, res))
+
 	server.listen(process.env.PORT || 3000, err => {
 		if (err) throw err
 		console.log(`Ready on port ${process.env.PORT || 3000}`)

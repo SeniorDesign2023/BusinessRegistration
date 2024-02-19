@@ -9,15 +9,17 @@ export default function LogInPage() {
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Handle form submission logic here
         //console.log(`Email: ${email}, Password: ${password}`);
         //router.push('/mainpage');
-        post("login", {
+        let res = await post("login", {
             email,
             password
         })
+        router.push(res.data.redirect)
+
     };
 
 

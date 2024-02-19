@@ -4,13 +4,13 @@ const mysql = require("mysql");
 const database = require("./database")
 const session = require("./session.js")
 
-module.exports = function login(req, res) {
+module.exports = async function login(req, res) {
 
-    if (checkLogin(req.body.email, req.body.password)) {
-        session.makeCookie(req, res, req.body.email)
-        res.redirect(303, "/homepage")
+    if (await checkLogin(req.body.email, req.body.password)) {
+        await session.makeCookie(req, res, req.body.email)
+        res.json({redirect: "/mainpage"})
     } else
-        res.redirect(303, "/login")
+        res.json({redirect: "/login"})
 
 }
 
@@ -21,24 +21,13 @@ function genPasswordHash(pass, salt) {
         .digest();
 }
 
-/*return new Promise((resolve, reject) => {
-        connection.query("SELECT Password FROM USER WHERE Email = ?", [user], function (err, result, fields) {
-            if (err) reject(err);
-            if (result.length > 0) {
-                resolve(result[0].Password);
-            } else {
-                resolve(undefined);
-            }
-        });
-    });*/
-
 async function getPassword(user) {
     
     var records = await database.query("SELECT Password FROM USER WHERE Email = ?", [user])
-    if (records.length < 0)
+    if (records.length == 0)
         return undefined
 
-    return result[0].Password
+    return records[0].Password
 
 }
 
@@ -65,16 +54,3 @@ async function checkLogin(user, pass) {
     }
 
 }
-
-/*async function main() {
-    try {
-        const result = await checkLogin("123@123.com", "456");
-        console.log(result);
-    } catch (error) {
-        console.error(error);
-    } finally {
-        connection.end();
-    }
-}
-
-main();*/

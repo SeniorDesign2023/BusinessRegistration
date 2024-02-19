@@ -4,6 +4,8 @@ const login = require("./login")
 const signup = require("./signup")
 const verifyAndRedirect = session.verifyAndRedirect
 
+const util = require("util")
+
 const table = {
     login,
     signup,
@@ -12,6 +14,8 @@ const table = {
 
 module.exports = function dispatch(req, res, nextHandle) {
 
+    //console.log(util.inspect(req))
+
     var endpoint = req.body.endpoint
 
     if (!endpoint) {
@@ -19,6 +23,6 @@ module.exports = function dispatch(req, res, nextHandle) {
         return
     }
 
-    return table[endpoint]()
+    return table[endpoint](req, res)
 
 }

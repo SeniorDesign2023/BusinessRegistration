@@ -9,26 +9,6 @@ const dbOptions = {
 	database: "Form_Filler_DB"
 }
 
-function csl(items) { //comma-separated list
-
-	var str = ""
-	var first = true
-
-	for (var item of items) {
-
-		if (!first) 
-			str += ", "
-		else 
-			first = false
-		
-		str += `${item}`
-
-	}
-
-	return str
-
-}
-
 function query(sql, data = []) {
 	return new Promise((resolve, reject) => {
 		db.query(sql, data, (err, res) => {
@@ -50,34 +30,6 @@ function execute(sql) {
 		})
 	})
 } 
-
-function insert(table, record) {
-	
-	var keys = Object.keys(record)
-	var values = Object.values(record)
-
-	var keystr = csl(keys)
-	var valstr = csl(values)
-	
-	var sql = `INSERT INTO ? (?) VALUES (?)`
-	
-	return query(sql, [table, keystr, valstr]) 
-}
-
-/*function initTable(name, rows) {
-	var sql = "CREATE TABLE IF NOT EXISTS " + name + "(" 
-	sql += "id INT AUTO_INCREMENT PRIMARY KEY"
-	
-	for (row of rows) {	
-		
-		sql += ", " + row
-	
-	}
-	
-	sql += ");"
-	
-	return execute(sql)
-}*/
 
 function init() {
 	
@@ -105,6 +57,5 @@ function init() {
 module.exports = {
 	query,
 	execute,
-	insert,
 	init
 }
