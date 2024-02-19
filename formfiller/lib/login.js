@@ -1,13 +1,13 @@
 const crypto = require("crypto");
 const mysql = require("mysql");
 
-import {query} from "./database"
-import {makeCookie} from "./session"
+const database = require("./database")
+const session = require("./session.js")
 
-export function login(req, res) {
+module.exports = function login(req, res) {
 
     if (checkLogin(req.body.email, req.body.password)) {
-        makeCookie(req, res, req.body.email)
+        session.makeCookie(req, res, req.body.email)
         res.redirect(303, "/homepage")
     } else
         res.redirect(303, "/login")
@@ -34,7 +34,7 @@ function genPasswordHash(pass, salt) {
 
 async function getPassword(user) {
     
-    var records = await query("SELECT Password FROM USER WHERE Email = ?", [user])
+    var records = await database.query("SELECT Password FROM USER WHERE Email = ?", [user])
     if (records.length < 0)
         return undefined
 

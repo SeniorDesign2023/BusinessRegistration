@@ -1,7 +1,6 @@
 const mysql = require("mysql")
 
 db = undefined
-
 const dbOptions = {
 	host: "localhost",
 	port: "13306",
@@ -9,8 +8,6 @@ const dbOptions = {
 	password: "userpass",
 	database: "Form_Filler_DB"
 }
-
-const connection = mysql.createConnection();
 
 function csl(items) { //comma-separated list
 
@@ -32,7 +29,7 @@ function csl(items) { //comma-separated list
 
 }
 
-export async function query(sql, data = []) {
+function query(sql, data = []) {
 	return new Promise((resolve, reject) => {
 		db.query(sql, data, (err, res) => {
 			if (err) 
@@ -43,7 +40,7 @@ export async function query(sql, data = []) {
 	})
 } 
 
-export async function execute(sql) {
+function execute(sql) {
 	return new Promise((resolve, reject) => {
 		db.execute(sql, (err, res) => {
 			if (err) 
@@ -54,7 +51,7 @@ export async function execute(sql) {
 	})
 } 
 
-export async function insert(table, record) {
+function insert(table, record) {
 	
 	var keys = Object.keys(record)
 	var values = Object.values(record)
@@ -64,7 +61,7 @@ export async function insert(table, record) {
 	
 	var sql = `INSERT INTO ? (?) VALUES (?)`
 	
-	return await query(sql, [table, keystr, valstr]) 
+	return query(sql, [table, keystr, valstr]) 
 }
 
 /*function initTable(name, rows) {
@@ -82,7 +79,7 @@ export async function insert(table, record) {
 	return execute(sql)
 }*/
 
-export async function init() {
+function init() {
 	
 	console.log("database init start")
 
@@ -103,4 +100,11 @@ export async function init() {
 		
 	})
 	
+}
+
+module.exports = {
+	query,
+	execute,
+	insert,
+	init
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LogInPage.css'
 import { useRouter } from 'next/router';
 
-import post from "../../lib/post"
+import post from "../post"
 
 export default function SignUpPage() {
     const [fullname, setFullName] = useState('');

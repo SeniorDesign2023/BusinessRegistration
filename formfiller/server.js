@@ -7,12 +7,12 @@ const dev = process.env.NODE_ENV !== "production"
 const nextApp = next({dev})
 const handle = nextApp.getRequestHandler()
 
-import {init} from "./lib/database"
-import dispatch from "./lib/post-dispatch"
+const database = require("./lib/database.js")
+const dispatch = require("./lib/post-dispatch.js")
 
 nextApp.prepare().then(async () => {
 	
-	await init()
+	await database.init()
 
 	const server = express()
 	
@@ -33,4 +33,5 @@ nextApp.prepare().then(async () => {
 	
 }).catch(e => {
 	console.error(e.stack)
+	process.exit(1)
 })

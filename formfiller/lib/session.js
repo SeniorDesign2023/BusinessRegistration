@@ -1,10 +1,10 @@
-import {execute, insert, query} from "./database"
+const database = require("./database.js")
 
 const TIMEOUT = 3000 //30 minutes 00 seconds
 
-export async function makeCookie(req, res, user, id = undefined) {
+async function makeCookie(req, res, user, id = undefined) {
 
-	record = await query("SELECT * FROM User WHERE Email = ?", [user])
+	record = await database.query("SELECT * FROM User WHERE Email = ?", [user])
 		
 	var user = record[0]
 	req.session.user = user
@@ -32,9 +32,9 @@ export async function makeCookie(req, res, user, id = undefined) {
 }
 
 //Returns whether the session is still valid
-export async function check(id) {
+async function check(id) {
 
-	var record = await query(`SELECT * FROM sessions WHERE id = ${id}`)
+	var record = await database.query(`SELECT * FROM sessions WHERE id = ${id}`)
 	
 	if (record.length == 0)
 		return false
@@ -43,7 +43,7 @@ export async function check(id) {
 	
 	var created = session.created
 	
-	var diffRecord = await query(`SELECT NOW() - CAST('${created}' AS DATETIME)`)
+	var diffRecord = await database.query(`SELECT NOW() - CAST('${created}' AS DATETIME)`)
 	var diff = Object.values(diffRecord[0])[0]
 	
 	var expired = (diff > TIMEOUT)
@@ -58,7 +58,7 @@ export async function check(id) {
 }
 
 //Checks session
-export async function verifySession(req, res) {
+async function verify(req, res) {
 
 	var id = req.cookies.id
 
@@ -66,15 +66,15 @@ export async function verifySession(req, res) {
 		return false
 	}
 
-	var valid = await check(id)
+	var valid = await session.check(id)
 	
 	if (valid) {
 		if (req.session.user === undefined) {
 
-			var record = await query(`SELECT * FROM sessions WHERE id = ${id}`)
+			var record = await database.query(`SELECT * FROM sessions WHERE id = ${id}`)
 			var user = record[0].userid
 
-			record = await query("SELECT * FROM users WHERE id = ?", [user])
+			record = await database.query("SELECT * FROM users WHERE id = ?", [user])
 			req.session.user = record[0]
 			req.session.sid = id
 
@@ -86,7 +86,7 @@ export async function verifySession(req, res) {
 }
 
 //Checks session, auto-redirects to login screen if invalid
-export async function verifySessionAndRedirect(req, res) {
+async function verifyAndRedirect(req, res) {
 	
 	
 		
@@ -101,10 +101,10 @@ export async function verifySessionAndRedirect(req, res) {
 		} else {
 			if (req.session.user === undefined) {
 
-				var record = await query(`SELECT * FROM sessions WHERE id = ${id}`)
+				var record = await database.query(`SELECT * FROM sessions WHERE id = ${id}`)
 				var user = record[0].userid
 
-				record = await query("SELECT * FROM users WHERE id = ?", [user])
+				record = await database.query("SELECT * FROM users WHERE id = ?", [user])
 				req.session.user = record[0]
 				req.session.sid = id
 
@@ -116,6 +116,13 @@ export async function verifySessionAndRedirect(req, res) {
 	}
 }
 
-export function renewSession(id) {
-	return execute(`UPDATE sessions SET created = NOW() WHERE id = ${id}`)
+function renewSession(id) {
+	return database.execute(`UPDATE sessions SET created = NOW() WHERE id = ${id}`)
+}
+
+module.exports = {
+	makeCookie,
+	check,
+	verify,
+	verifyAndRedirect
 }

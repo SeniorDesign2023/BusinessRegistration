@@ -1,6 +1,8 @@
-import {login} from "./login"
-import {signup} from "./signup"
-import {verifyAndRedirect} from "./session"
+const session = require("./session")
+
+const login = require("./login")
+const signup = require("./signup")
+const verifyAndRedirect = session.verifyAndRedirect
 
 const table = {
     login,
@@ -8,7 +10,7 @@ const table = {
     verifyAndRedirect
 }
 
-export default function dispatch(req, res, nextHandle) {
+module.exports = function dispatch(req, res, nextHandle) {
 
     var endpoint = req.body.endpoint
 

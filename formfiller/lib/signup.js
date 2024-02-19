@@ -13,12 +13,12 @@
 const crypto = require("crypto")
 const { Buffer } = require("buffer")
 
-import { makeCookie } from "./session";
-import { query } from "./database"
+const session = require("./session")
+const database = require("./database")
 
-export default async function signup(req, res) {
+module.exports = async function signup(req, res) {
 
-    var records = query("SELECT * FROM USER WHERE Email = ?", [user])
+    var records = database.query("SELECT * FROM USER WHERE Email = ?", [user])
     if (records.length > 0) {
         res.redirect(303, "/signup")
     }
@@ -44,7 +44,7 @@ async function createAccount(un, pwd) {
     
     var final = Buffer.concat([salt, hash], 64)
 
-    return query('INSERT INTO USER (Email, Password) VALUES (?, ?)', [un, final], function (error, results, fields) {
+    return database.query('INSERT INTO USER (Email, Password) VALUES (?, ?)', [un, final], function (error, results, fields) {
         if (error) throw error;
         console.log('Inserted into database:', results);
       });
