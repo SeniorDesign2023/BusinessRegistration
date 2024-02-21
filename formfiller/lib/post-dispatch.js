@@ -1,4 +1,4 @@
-const session = require("./post/session")
+const session = require("./session")
 
 const login = require("./post/login")
 const signup = require("./post/signup")
