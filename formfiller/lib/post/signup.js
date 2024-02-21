@@ -2,7 +2,7 @@ const crypto = require("crypto")
 const { Buffer } = require("buffer")
 
 const session = require("./session")
-const database = require("./database")
+const database = require("../database")
 
 module.exports = async function signup(req, res) {
 
@@ -34,6 +34,6 @@ function createAccount(un, pwd) {
     var final = Buffer.concat([salt, hash], 64)
 
     return database.query('INSERT INTO USER (Email, Password) VALUES (?, ?)', [un, final])
-        .then(() => console.log('Inserted into database:', results))
+        .then(results => console.log('Inserted into database:', results))
         
 }

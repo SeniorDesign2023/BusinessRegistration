@@ -1,7 +1,7 @@
-const session = require("./session")
+const session = require("./post/session")
 
-const login = require("./login")
-const signup = require("./signup")
+const login = require("./post/login")
+const signup = require("./post/signup")
 const verifyAndRedirect = session.verifyAndRedirect
 
 const util = require("util")

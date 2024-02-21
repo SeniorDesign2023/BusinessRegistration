@@ -1,4 +1,4 @@
-const database = require("./database.js")
+const database = require("../database.js")
 
 const TIMEOUT = 3000 //30 minutes 00 seconds
 
