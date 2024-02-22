@@ -1,8 +1,11 @@
+'use client'
+
 import React, { useState } from 'react';
 import './LogInPage.css'
 import { useRouter } from 'next/router';
+//import {redirect} from 'next/navigation'
 
-import post from "../post"
+import { post } from "../http"
 
 export default function LogInPage() {
     const [email, setEmail] = useState('');
@@ -19,7 +22,8 @@ export default function LogInPage() {
             password
         })
         router.push(res.data.redirect)
-
+        //redirect({route: res.data.redirect})
+        //redirect(res.data.redirect)
     };
 
 

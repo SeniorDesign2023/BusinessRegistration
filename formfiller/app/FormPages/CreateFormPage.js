@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import "./CreateFormPage.css"
 import { useRouter } from 'next/router';
 
-import post from "../post"
+import { post } from "../http"
 
 export default function CreateFormPage() {
     const [formName, setFormName] = useState('');
