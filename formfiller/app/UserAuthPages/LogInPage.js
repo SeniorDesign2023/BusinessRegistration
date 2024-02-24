@@ -5,7 +5,7 @@ import './LogInPage.css'
 import { useRouter } from 'next/router';
 //import {redirect} from 'next/navigation'
 
-import { post } from "../http"
+import { post } from "@/lib/http"
 
 export default function LogInPage() {
     const [email, setEmail] = useState('');
