@@ -1,5 +1,13 @@
 import JsonFormPage from '../app/FormPages/JsonFormPage';
 
-export default function form() {
-    return <JsonFormPage />;
+export async function getServerSideProps(context) {
+
+    return {props: {
+        form: context.res.form
+    }}
+
+}
+
+export default function form({form}) {
+    return <JsonFormPage form={form}/>;
 }

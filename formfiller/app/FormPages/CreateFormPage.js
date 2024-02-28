@@ -4,16 +4,21 @@ import React, { useState } from 'react';
 import "./CreateFormPage.css"
 import { useRouter } from 'next/router';
 
+import { post } from "@/lib/http"
+
 export default function CreateFormPage() {
     const [formName, setFormName] = useState('');
     const [assign, setAssign] = useState('');
     const [json, setJson] = useState('');
     const router = useRouter();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Handle form submission logic here
-       
+        let res = await post("createform", {
+            formName,
+            json
+        })
         router.push('/mainpage');
     };
     

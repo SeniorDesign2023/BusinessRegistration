@@ -1,8 +1,8 @@
 const crypto = require("crypto");
 const mysql = require("mysql");
 
-const database = require("./database")
-const session = require("./session.js")
+const database = require("../database")
+const session = require("../session.js")
 
 module.exports = async function login(req, res) {
 

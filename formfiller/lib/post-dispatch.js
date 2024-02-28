@@ -1,15 +1,18 @@
 const session = require("./session")
 
-const login = require("./login")
-const signup = require("./signup")
-const verifyAndRedirect = session.verifyAndRedirect
+const login = require("./post/login")
+const signup = require("./post/signup")
+//const verifyAndRedirect = session.verifyAndRedirect
+const formresponse = require("./post/formresponse")
+const dbquery = require("./post/dbquery")
 
 const util = require("util")
 
 const table = {
     login,
     signup,
-    verifyAndRedirect
+    formresponse,
+    dbquery
 }
 
 module.exports = function dispatch(req, res, nextHandle) {

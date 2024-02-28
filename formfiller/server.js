@@ -3,6 +3,7 @@ const session = require("express-session")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const next = require("next")
+const util = require("util")
 
 const dev = process.env.NODE_ENV !== "production"
 const nextApp = next({dev})
@@ -26,6 +27,16 @@ nextApp.prepare().then(async () => {
 		secret: "123456"
 	}))
 	
+	server.get("/form", async (req, res) => {
+		
+		var result = await database.query("SELECT From_Data FROM FORM WHERE Form_Name = ?", ["__test"])
+		if (result.count == 0)
+			return res.status(404).send()
+
+		res.form = JSON.parse(result[0].From_Data.toString())
+		return nextApp.render(req, res, "/form", req.query)
+	})
+
 	server.post("/post", (req, res) => dispatch(req, res, handle))
 	server.get('*', (req, res) => handle(req, res))
 
