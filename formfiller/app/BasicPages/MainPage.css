@@ -61,6 +61,13 @@
     background-color: greenyellow;
 }
 
+.admin-page{
+    margin-left: 10px;
+    height: 30px;
+    width: 40px;
+    background-color: blue;
+}
+
 .all-groups {
     margin-top: 0px;
     display: flex;

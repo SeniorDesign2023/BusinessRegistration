@@ -1,0 +1,18 @@
+
+.member-admin{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 40%;
+}
+
+h2{
+    font-weight: 500;
+}
+/* .member{
+    margin-left: 100px;
+}
+
+.admin{
+    margin-left: 100px;
+} */

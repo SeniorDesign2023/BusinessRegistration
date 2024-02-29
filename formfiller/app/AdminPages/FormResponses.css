@@ -1,0 +1,12 @@
+.json-text{
+    height: 70%;
+    width:80%;
+    background-color: rgb(208, 208, 208);
+    padding: 2%;
+}
+
+.group-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
