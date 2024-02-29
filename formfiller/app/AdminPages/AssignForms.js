@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function AssignForm() {
+export default function AssignForm({orgName}) {
     const router = useRouter();
     const [member, setMember] = useState('');
 
@@ -10,7 +10,10 @@ export default function AssignForm() {
     };
 
     const exit = () => {
-        router.push('/adminmanageform');
+        router.push({
+            pathname: '/adminmainpage',
+            query: { org: orgName},
+        });
     };
 
     return(

@@ -3,11 +3,14 @@ import "./AdminMainPage.css"
 import AdminFormIndivdual from './AdminFormIndividual'
 import { useRouter } from 'next/router';
 
-export default function AdminManageForms() {
+export default function AdminManageForms({orgName}) {
     const router = useRouter();
 
     const exit = () => {
-        router.push('/adminmainpage');
+        router.push({
+            pathname: '/adminmainpage',
+            query: { org: orgName },
+        });
     };
 
     return (

@@ -6,7 +6,13 @@ import { useRouter } from 'next/router';
 
 import { post } from "@/lib/http"
 
-export default function CreateFormPage() {
+export default function CreateFormPage({orgName, orgRole}) {
+    if (orgName == null) {
+        orgName = 'Organization 1'
+    }
+    if (orgRole == null) {
+        orgRole = 'Normal'
+    }
     const [formName, setFormName] = useState('');
     const [assign, setAssign] = useState('');
     const [json, setJson] = useState('');
@@ -19,11 +25,19 @@ export default function CreateFormPage() {
             formName,
             json
         })
-        router.push('/mainpage');
+        router.push({
+            pathname: '/mainpage',
+            query: { org: orgName, role: orgRole },
+           
+        });
+     
     };
     
     const navigateToMainPage = () => {
-        router.push('/mainpage');
+        router.push({
+            pathname: '/mainpage',
+            query: { org: orgName, role: orgRole },
+        });
     };
 
 

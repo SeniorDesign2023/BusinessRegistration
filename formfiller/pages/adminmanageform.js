@@ -1,5 +1,8 @@
+import { useRouter } from 'next/router';
 import AdminManageForms from '../app/AdminPages/AdminManageForms';
 
 export default function adminManageForm() {
-    return <AdminManageForms />;
+    const router = useRouter();
+    const { org } = router.query;
+    return <AdminManageForms orgName = {org} />;
 }

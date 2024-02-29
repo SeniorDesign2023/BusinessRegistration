@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./AdminMainPage.css"
 import { useRouter } from 'next/router';
 
-export default function AdminMainPage() {
+export default function AdminMainPage({name}) {
     const router = useRouter();
     const [newMember, setNewMember] = useState('');
     const [newAdmin, setNewAdmin] = useState('');
@@ -11,17 +11,24 @@ export default function AdminMainPage() {
     };
 
     const navigateToAdminManageForm = () => {
-        router.push('/adminmanageform');
+        router.push({
+            pathname: '/adminmanageform',
+            query: { org: name},
+        });
     };
 
     const exit = () => {
-        router.push('/mainpage');
+        router.push({
+            pathname: '/mainpage',
+            query: { org: name, role : 'Admin' },
+        });
     };
 
     return (
       
     <div>
           <h4 onClick={exit}> exit</h4>
+          <h4>{name} Admin Page</h4>
           <h1 onClick={navigateToAdminManageForm}> Manage forms</h1>
           <div className='member-admin'>
           <div className='member'>

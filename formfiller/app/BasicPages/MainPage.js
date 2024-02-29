@@ -11,11 +11,18 @@ import SubmittedPage from '../FormViews/SubmittedPage';
 import { useRouter } from 'next/router';
 
 
-export default function MainPage() {
+export default function MainPage({orgName, orgRole}) {
+    
+    if (orgName == null) {
+        orgName = 'Organization 1'
+    }
+    if (orgRole == null) {
+        orgRole = 'Normal'
+    }
     const [selectedPage, setSelectedPage] = useState('All');
    // const [selectedOrg, setSelectedOrg] = useState('Organization 1');
-    const [selectedOrgName, setSelectedOrgName] = useState('Organization 1');
-    const [selectedOrgRole, setSelectedOrgRole] = useState('Normal');
+    const [selectedOrgName, setSelectedOrgName] = useState(orgName);
+    const [selectedOrgRole, setSelectedOrgRole] = useState(orgRole);
     const [isSearching, setIsSearching] = useState(false);
 
     const setSelectedOrg = (name, role) => {
@@ -48,11 +55,17 @@ export default function MainPage() {
     };
 
     const navigateToCreateForm = () => {
-        router.push('/createform');
+        router.push({
+            pathname: '/createform',
+            query: { org: selectedOrgName, role: selectedOrgRole },
+        });
     };
 
     const navigateToAdminMainPage = () => {
-        router.push('/adminmainpage');
+        router.push({
+            pathname: '/adminmainpage',
+            query: { org: selectedOrgName}
+        });
     };
 
     return (
