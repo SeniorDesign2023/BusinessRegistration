@@ -9,7 +9,8 @@ import React, { useState } from 'react';
 import SearchOrganization from '../Organizations/SearchOrganization';
 import SubmittedPage from '../FormViews/SubmittedPage';
 import { useRouter } from 'next/router';
-
+import { IoCreate } from "react-icons/io5";
+import { IoMdSettings } from "react-icons/io";
 
 export default function MainPage({orgName, orgRole}) {
     
@@ -94,8 +95,8 @@ export default function MainPage({orgName, orgRole}) {
                     <h5 onClick={() => setSelectedPage('Drafts')}>Drafts </h5>
                     <h5 onClick={() => setSelectedPage('Submitted')}>Submitted </h5>
                     {selectedOrgRole === 'Admin' && <h5 onClick={() => setSelectedPage('Created')}>Created</h5>}
-                    {selectedOrgRole === 'Admin' && <div className='create-form' onClick={navigateToCreateForm}></div>}
-                    {selectedOrgRole === 'Admin' && <div className='admin-page' onClick={navigateToAdminMainPage}></div>}
+                    {selectedOrgRole === 'Admin' && <div onClick={navigateToCreateForm}> <IoCreate className='create-form' /></div>}
+                    {selectedOrgRole === 'Admin' && <div onClick={navigateToAdminMainPage}> <IoMdSettings className='admin-page' /></div>}
              </div>
     
              <div className = "line"></div>

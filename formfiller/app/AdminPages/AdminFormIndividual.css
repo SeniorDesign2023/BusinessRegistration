@@ -6,17 +6,17 @@
 }
 
 .assigned{
-    margin-top: 1.5%;
+    margin-top: 20px;
     margin-left: 300px;
     height: 30px;
     width: 40px;
-    background-color: greenyellow;
+   
 }
 
 .responses{
-    margin-top: 1.5%;
+    margin-top: 20px;
     margin-left: 10px;
     height: 30px;
     width: 40px;
-    background-color: blue;
+
 }

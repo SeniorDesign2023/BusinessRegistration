@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRouter } from 'next/router';
 import "./FormResponses.css"
-export default function FormResponses() {
+export default function FormResponses({formName}) {
     const router = useRouter();
     const exit = () => {
         router.push('/adminmanageform');
@@ -21,7 +21,7 @@ export default function FormResponses() {
     return (
         <div>
             <h4 onClick={exit}> exit </h4>
-            <h1>Form Name</h1>
+            <h1>{formName}</h1>
             <div className='group-container'>
             <div >
                
