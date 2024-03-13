@@ -23,7 +23,7 @@ function genPasswordHash(pass, salt) {
 
 async function getPassword(user) {
     
-    var records = await database.query("SELECT Password FROM USER WHERE Email = ?", [user])
+    var records = await database.query("SELECT Password FROM Users WHERE Email = ?", [user])
     if (records.length == 0)
         return undefined
 

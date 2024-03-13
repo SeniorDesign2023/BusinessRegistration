@@ -6,7 +6,7 @@ const database = require("../database")
 
 module.exports = async function signup(req, res) {
 
-    var records = await database.query("SELECT * FROM USER WHERE Email = ?", [req.body.email])
+    var records = await database.query("SELECT * FROM Users WHERE Email = ?", [req.body.email])
     if (records.length > 0) {
         res.json({redirect: "/signup"})
         return
@@ -33,7 +33,7 @@ function createAccount(un, pwd) {
     
     var final = Buffer.concat([salt, hash], 64)
 
-    return database.query('INSERT INTO USER (Email, Password) VALUES (?, ?)', [un, final])
+    return database.query('INSERT INTO Users (Email, Password) VALUES (?, ?)', [un, final])
         .then(results => console.log('Inserted into database:', results))
         
 }

@@ -49,7 +49,7 @@ export default function CreateOrganization() {
                 />
             </label>
             <label>
-                Username
+                Organization Tag
                 <input className='form-name'
                     type="text"
                     value={tag}
@@ -63,7 +63,7 @@ export default function CreateOrganization() {
                     type="text"
                     value={aboutOrg}
                     onChange={e => setAboutOrg(e.target.value)}
-                    required
+                    //required
                 />
             </label>
 
@@ -73,7 +73,7 @@ export default function CreateOrganization() {
                     type="text"
                     value={organizationMembers}
                     onChange={e => setOrganizationMembers(e.target.value)}
-                    required
+                    //required
                 />
             </label>
 
