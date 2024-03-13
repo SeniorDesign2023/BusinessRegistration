@@ -1,3 +1,6 @@
+
+//Still need to add some error handeling
+
 const database = require("../database")
 
 module.exports = async function createorg(req, res) {
