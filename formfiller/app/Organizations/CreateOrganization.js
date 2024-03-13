@@ -4,18 +4,26 @@ import React, { useState } from 'react';
 import "./CreateOrganization.css"
 import { useRouter } from 'next/router';
 
+import { post } from "@/lib/http"
+
+
 export default function CreateOrganization() {
     const [organizationName, setOrganizationName] = useState('');
-    const [username, setUsername] = useState('');
+    const [tag, setUsername] = useState('');
     const [organizationMembers, setOrganizationMembers] = useState('');
     const [aboutOrg, setAboutOrg] = useState('');
     const router = useRouter();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Handle form submission logic here
-       
-        router.push('/mainpage');
+        console.log("create org")
+        let res = await post("createorg", {
+            organizationName,
+            tag,
+            aboutOrg,
+            organizationMembers
+        })
+        router.push(res.data.redirect)
     };
 
     const navigateToMainPage = () => {
@@ -44,7 +52,7 @@ export default function CreateOrganization() {
                 Username
                 <input className='form-name'
                     type="text"
-                    value={username}
+                    value={tag}
                     onChange={e => setUsername(e.target.value)}
                     required
                 />
