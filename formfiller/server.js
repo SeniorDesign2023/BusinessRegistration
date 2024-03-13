@@ -29,7 +29,7 @@ nextApp.prepare().then(async () => {
 	
 	server.get("/form", async (req, res) => {
 		
-		var result = await database.query("SELECT From_Data FROM FORM WHERE Form_Name = ?", ["__test"])
+		var result = await database.query("SELECT From_Data FROM Forms WHERE Form_Name = ?", ["__test"])
 		if (result.count == 0)
 			return res.status(404).send()
 
