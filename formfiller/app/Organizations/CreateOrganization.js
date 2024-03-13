@@ -16,7 +16,7 @@ export default function CreateOrganization() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("create org")
+        //console.log(aboutOrg)
         let res = await post("createorg", {
             organizationName,
             tag,
