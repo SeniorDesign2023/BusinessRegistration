@@ -16,7 +16,7 @@ export default function JsonFormPage({form}) {
 
     async function postData(isDraft) {
         
-        await post("formResponse", {
+        await post("formresponse", {
 
             name: form.name,
             data,
