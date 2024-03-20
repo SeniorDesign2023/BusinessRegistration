@@ -22,6 +22,11 @@ module.exports = async function createorg(req, res) {
     else {
         await createOrganization(req.body.tag, req.body.organizationName, req.body.aboutOrg)
     }
+
+    //Add current user as admin
+    let currentUser = req.session.user['Email']
+    //console.log(currentUser)
+    await addAdmin(req.body.tag, currentUser);
     
     //Add Members
     if(req.body.organizationMembers != ''){
@@ -61,5 +66,10 @@ async function addUser(tag, user) {
 
     //still need to add handeling for email not found. Will do later
     return database.query('INSERT INTO User_Org (Org_Tag, Email) VALUES (?, ?)', [tag, user])
+    .then(results => console.log('Inserted into database:', results))
+}
+
+function addAdmin(tag, user) {
+    return database.query('INSERT INTO Admin_Org (Org_Tag, Email) VALUES (?, ?)', [tag, user])
     .then(results => console.log('Inserted into database:', results))
 }
