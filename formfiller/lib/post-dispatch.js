@@ -3,9 +3,9 @@ const session = require("./session")
 const login = require("./post/login")
 const signup = require("./post/signup")
 const createorg = require("./post/createorg")
-//const verifyAndRedirect = session.verifyAndRedirect
 const formresponse = require("./post/formresponse")
 const dbquery = require("./post/dbquery")
+const createform = require("./post/createform")
 
 const util = require("util")
 
@@ -14,7 +14,8 @@ const table = {
     signup,
     createorg,
     formresponse,
-    dbquery
+    dbquery,
+    createform
 }
 
 module.exports = function dispatch(req, res, nextHandle) {

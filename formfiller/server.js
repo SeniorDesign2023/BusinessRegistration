@@ -28,12 +28,14 @@ nextApp.prepare().then(async () => {
 	}))
 	
 	server.get("/form", async (req, res) => {
-		
-		var result = await database.query("SELECT From_Data FROM Forms WHERE Form_Name = ?", ["__test"])
+		if (!req.query.id) 
+			return res.status(404).send()
+
+		var result = await database.query("SELECT Blank_Form_Data FROM Blank_Forms WHERE Blank_Form_ID = ?", [req.query.id])
 		if (result.count == 0)
 			return res.status(404).send()
 
-		res.form = JSON.parse(result[0].From_Data.toString())
+		res.form = JSON.parse(result[0].Blank_Form_Data.toString())
 		return nextApp.render(req, res, "/form", req.query)
 	})
 
