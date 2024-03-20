@@ -2,10 +2,13 @@ import React from 'react';
 
 import { useRouter } from 'next/router';
 import "./FormResponses.css"
-export default function FormResponses({formName}) {
+export default function FormResponses({formName, orgName}) {
     const router = useRouter();
     const exit = () => {
-        router.push('/adminmanageform');
+        router.push({
+            pathname: '/adminmanageform',
+            query: { org: orgName},
+        });
     };
     const text = `{
         "name": "John Doe",

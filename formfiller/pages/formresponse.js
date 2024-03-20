@@ -3,6 +3,6 @@ import FormResponses from '../app/AdminPages/FormResponses';
 
 export default function formresponse() {
     const router = useRouter();
-    const {formName} = router.query;
-    return <FormResponses formName={formName}/>;
+    const {formName, org} = router.query;
+    return <FormResponses formName={formName} orgName = {org}/>;
 }

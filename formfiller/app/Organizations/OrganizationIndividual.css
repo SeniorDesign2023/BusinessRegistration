@@ -19,3 +19,9 @@
 .org-ind-name{
     font-weight: lighter;
 }
+
+.org-selected {
+    /* Add your selected organization styling here */
+   
+    font-weight: bold; /* Example font weight */
+}

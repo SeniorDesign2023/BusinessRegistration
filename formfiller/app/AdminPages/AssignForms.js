@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function AssignForm({orgName}) {
+export default function AssignForm({formName, orgName}) {
     const router = useRouter();
     const [member, setMember] = useState('');
 
@@ -9,17 +9,22 @@ export default function AssignForm({orgName}) {
         event.preventDefault();
     };
 
+  
     const exit = () => {
         router.push({
-            pathname: '/adminmainpage',
+            pathname: '/adminmanageform',
             query: { org: orgName},
         });
     };
+  
 
     return(
         <div>
              {/* <div className='member'> */}
+                <div>
                 <h4 onClick={exit}> exit</h4>
+                <h4>{formName}</h4>
+                </div>
                 <h1> Assigned </h1>
                 <form onSubmit={handleSubmit}>
                     <label >
