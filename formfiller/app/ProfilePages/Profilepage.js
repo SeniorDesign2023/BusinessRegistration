@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import './Profilepage.css'
 
-import { post } from "@/lib/http"
+import { post, get } from "@/lib/http"
 
 export default function Profilepage() {
 
@@ -16,6 +16,31 @@ export default function Profilepage() {
 
     const router = useRouter();
 
+    useEffect(() => {
+        // Fetch user profile data when component mounts
+        const fetchUserProfile = async () => {
+            try {
+                const response = await get('/fetchprofile');             
+                const userData = response.data; 
+                console.log(userData);
+
+                // Set user profile data to state
+                setFirstName(userData.First_Name);
+                setMiddleName(userData.Middle_Name);
+                setLastName(userData.Last_Name);
+                setPhone(userData.Phone);
+                setAddress(userData.Address);
+                setZipCode(userData.Zip);
+                //setDob(userData.Dob);
+                setDob(userData.DoB || '')
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                // Handle error
+            }
+        };
+
+        fetchUserProfile();
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();

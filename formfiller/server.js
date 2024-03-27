@@ -12,6 +12,11 @@ const handle = nextApp.getRequestHandler()
 const database = require("./lib/database.js")
 const dispatch = require("./lib/post-dispatch.js")
 
+
+const morgan = require('morgan');
+
+
+
 nextApp.prepare().then(async () => {
 	
 	await database.init()
@@ -26,6 +31,8 @@ nextApp.prepare().then(async () => {
 		saveUninitialized: false,
 		secret: "123456"
 	}))
+
+	server.use(morgan('dev'));
 	
 	server.get("/form", async (req, res) => {
 		if (!req.query.id) 
@@ -42,6 +49,24 @@ nextApp.prepare().then(async () => {
 		res.form.id = req.query.id
 		return nextApp.render(req, res, "/form", req.query)
 	})
+
+	server.get("/get", async (req, res) => {
+		if (req.query.endpoint === "/fetchprofile") {
+			console.log("fetchprofile")
+			if (!req.session || !req.session.user || !req.session.user['Email']) {
+				return res.status(404).json({ error: "User profile not found" });
+			}
+	
+			const currentUserEmail = req.session.user['Email'];
+			console.log(currentUserEmail);
+
+			profile = await database.query("SELECT * FROM Users WHERE Email = ?", [currentUserEmail])
+
+			return res.json(profile[0]);
+		} else {
+			return res.status(404).json({ error: "Invalid endpoint" });
+		}
+	});
 
 	server.post("/post", (req, res) => dispatch(req, res, handle))
 	server.get('*', (req, res) => handle(req, res))
