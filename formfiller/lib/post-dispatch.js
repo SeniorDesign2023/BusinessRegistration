@@ -23,8 +23,9 @@ const table = {
 module.exports = function dispatch(req, res, nextHandle) {
 
     //console.log(util.inspect(req))
-
+    
     var endpoint = req.body.endpoint
+    console.log(`endpoint: ${endpoint}`)
 
     if (!endpoint) {
         res.status("400").send({message: "No POST endpoint specified"})

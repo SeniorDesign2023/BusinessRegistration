@@ -13,7 +13,7 @@ const database = require("./lib/database.js")
 const dispatch = require("./lib/post-dispatch.js")
 
 
-const morgan = require('morgan');
+//const morgan = require('morgan');
 
 
 
@@ -32,7 +32,7 @@ nextApp.prepare().then(async () => {
 		secret: "123456"
 	}))
 
-	server.use(morgan('dev'));
+	//server.use(morgan('dev'));
 	
 	server.get("/form", async (req, res) => {
 		if (!req.query.id) 
