@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import './Profilepage.css'
 
+import { post } from "@/lib/http"
 
 export default function Profilepage() {
 
@@ -15,7 +16,7 @@ export default function Profilepage() {
 
     const router = useRouter();
 
-    const handleSubmit = (event) => {
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         // Handle form submission logic here
@@ -128,5 +129,3 @@ export default function Profilepage() {
         </div>
     );
 }
-
-
