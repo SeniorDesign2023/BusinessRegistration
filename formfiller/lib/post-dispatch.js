@@ -6,6 +6,7 @@ const createorg = require("./post/createorg")
 const formresponse = require("./post/formresponse")
 const dbquery = require("./post/dbquery")
 const createform = require("./post/createform")
+const submitprofile  = require("./post/submitprofile")
 
 const util = require("util")
 
@@ -15,7 +16,8 @@ const table = {
     createorg,
     formresponse,
     dbquery,
-    createform
+    createform,
+    submitprofile
 }
 
 module.exports = function dispatch(req, res, nextHandle) {
