@@ -1,23 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import './Profilepage.css'
 
+import { post, get } from "@/lib/http"
 
 export default function Profilepage() {
 
     const [firstName, setFirstName] = useState('');
     const [middleName, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [zipCode, setZipCode] = useState(0);
     const [dob, setDob] = useState('');
 
     const router = useRouter();
 
-    const handleSubmit = (event) => {
+    useEffect(() => {
+        // Fetch user profile data when component mounts
+        const fetchUserProfile = async () => {
+            try {
+                const response = await get('/fetchprofile');             
+                const userData = response.data; 
+                console.log(userData);
+
+                // Set user profile data to state
+                setFirstName(userData.First_Name);
+                setMiddleName(userData.Middle_Name);
+                setLastName(userData.Last_Name);
+                setPhone(userData.Phone);
+                setAddress(userData.Address);
+                setZipCode(userData.Zip);
+                //setDob(userData.Dob);
+                setDob(userData.DoB || '')
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                // Handle error
+            }
+        };
+
+        fetchUserProfile();
+    }, []);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Handle form submission logic here
+
+        let res = await post("submitprofile", {
+            firstName,
+            middleName,
+            lastName,
+            phone,
+            address,
+            zipCode,
+            dob
+        })
+        router.push(res.data.redirect)
        
         router.push('/mainpage');
     };
@@ -67,11 +105,11 @@ export default function Profilepage() {
             </label>
             </div>
             <label className='email'>
-                Email Address
-                <input className='email-input'
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
+                Phone Number
+                <input className='form-input'
+                    type="text"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
                     required
                 />
             </label>
@@ -108,7 +146,7 @@ export default function Profilepage() {
             </div>
           
            <div className='bottom'>
-            <input type="submit" value="Save" className='submit'/>
+            <input type="submit" value="Save Changes" className='submit'/>
             {/* will design this better */}
             <div className='logout' onClick={navigateToHomePage}> <h3 className='logout-text'> Log out</h3> </div>
             </div>
@@ -116,5 +154,3 @@ export default function Profilepage() {
         </div>
     );
 }
-
-
