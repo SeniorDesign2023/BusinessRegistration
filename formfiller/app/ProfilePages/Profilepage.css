@@ -29,8 +29,8 @@ color: #2E80E0;
     width: 682px;
     margin-top: 25px;
     margin-bottom: 20px;
-    background-color: #f2f2f2;
-    border: none;
+    background-color: white;
+    border: 1px solid #646464;
 }
 
 .form-left{
@@ -69,27 +69,31 @@ input{
     margin-bottom: 20px;
     height: 33px;
     width: 242px;
-    background-color: #f2f2f2;
-    border: none;
+    background-color: white;
+    border: 1px solid #646464;
+   
+}
+
+*{
+   background-color:  #F9FBFF;
 }
 
 .submit{
+    color: white;
     margin-left: 500px;
-    font-size: 24px;
+    font-size: 20px;
     height: 52px;
     width: 182px;
+    background-color: #555763;
+    border-radius: 8px;
 }
 
-.submit{
-    margin-left: 500px;
-    font-size: 24px;
-    height: 52px;
-    width: 182px;
-}
 
 .logout{
     /* font-size: 22px; */
-    background-color:#e6e4e4 ;
+    background-color:#555763 ;
+    
+    border-radius: 8px;
     height: 52px;
     width: 182px;
     margin-top: 25px;
@@ -97,9 +101,10 @@ input{
 }
 
 .logout-text{
+    color: white;
     margin-top: 12px;
     margin-left: 42px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
 
 }

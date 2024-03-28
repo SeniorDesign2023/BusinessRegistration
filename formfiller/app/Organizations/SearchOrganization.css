@@ -1,10 +1,33 @@
 .create{
-    background-color: #D9D9D9;
+    background-color: #555763;
+    color: white;
+    border-radius: 8px;
     width: 213px;
     height: 48px;
     font-size: 16px;
-    margin-top: 600px;
+    margin-top: 580px;
     margin-left: 40px;
+}
+
+label{
+    margin-left: 30px;
+   
+}
+
+form{
+    display: flex;
+    flex-direction: row; 
+    gap: 0px;
+}
+
+input{
+    height: 30px;
+    width: 200px;
+}
+
+.submit{
+    width: 24px;
+    height: 36px;
 }
 
 .create-text{

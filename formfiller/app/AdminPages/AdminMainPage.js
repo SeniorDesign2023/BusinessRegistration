@@ -26,10 +26,12 @@ export default function AdminMainPage({name}) {
 
     return (
       
-    <div>
-          <h4 onClick={exit}> exit</h4>
-          <h4>{name} Admin Page</h4>
-          <h1 onClick={navigateToAdminManageForm}> Manage forms</h1>
+    <div className='admin-mainpage'>
+          <div className='admin-top'>
+                <h4 className= "exit" onClick={exit}> exit</h4>
+                <h4 className='admin-top-name'>{name} Admin Page</h4>
+          </div>
+          <h1 className = "manage-forms" onClick={navigateToAdminManageForm}> Manage forms</h1>
           <div className='member-admin'>
           <div className='member'>
                 <h1> Members </h1>
@@ -50,6 +52,7 @@ export default function AdminMainPage({name}) {
             </div>
 
             <div className='admin'>
+             <div className='admin-in'>
                 <h1> Admins </h1>
                 <form onSubmit={handleSubmit}>
                 <label >
@@ -67,6 +70,7 @@ export default function AdminMainPage({name}) {
                 <h2> Admin 2</h2>
                 <h2> Admin 3</h2>
                 <h2> Admin 4</h2>
+            </div>
             </div>
           </div>
     </div>

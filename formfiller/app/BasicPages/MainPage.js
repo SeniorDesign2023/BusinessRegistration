@@ -29,6 +29,7 @@ export default function MainPage({orgName, orgRole}) {
     const setSelectedOrg = (name, role) => {
         setSelectedOrgName(name);
         setSelectedOrgRole(role);
+        setSelectedPage('All');
     }; 
 
     const router = useRouter();

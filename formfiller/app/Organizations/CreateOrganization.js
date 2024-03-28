@@ -41,7 +41,7 @@ export default function CreateOrganization() {
         <form onSubmit={handleSubmit}>
             <label>
                 Name of Organization
-                <input className='form-name'
+                <input className='org-name'
                     type="text"
                     value={organizationName}
                     onChange={e => setOrganizationName(e.target.value)}
@@ -50,7 +50,7 @@ export default function CreateOrganization() {
             </label>
             <label>
                 Organization Tag
-                <input className='form-name'
+                <input className='org-name'
                     type="text"
                     value={tag}
                     onChange={e => setUsername(e.target.value)}
@@ -59,7 +59,7 @@ export default function CreateOrganization() {
             </label>
             <label>
                 About Organization
-                <textarea className='json-input'
+                <textarea className='org-about'
                     type="text"
                     value={aboutOrg}
                     onChange={e => setAboutOrg(e.target.value)}
@@ -69,7 +69,7 @@ export default function CreateOrganization() {
 
             <label>
                 Organization Members
-                <input className='form-name'
+                <input className='org-name'
                     type="text"
                     value={organizationMembers}
                     onChange={e => setOrganizationMembers(e.target.value)}

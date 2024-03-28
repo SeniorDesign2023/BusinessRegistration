@@ -68,15 +68,7 @@ export default function CreateFormPage({orgName, orgRole}) {
                 />
             </label>
 
-            <label>
-                Assign Form
-                <input className='form-name'
-                    type="text"
-                    value={assign}
-                    onChange={e => setAssign(e.target.value)}
-                    required
-                />
-            </label>
+    
 
             <input type="submit" value="Generate form" className='submit' />
         </form>
