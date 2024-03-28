@@ -18,12 +18,16 @@ export default function HomePage() {
              </nav>
         </header>
        <div className = "body">
+        <div className='part-1'>
         <div className = "first-page-text">
             <h2 className='top-text'> Introducing Form Filler</h2>
+            <div></div>
+            <div></div>
             <h2 className='normal-text'> A centralized location to access and fill out all your forms from all your organizations. Manage the cluster of all your forms, and manage them all.</h2>
         </div>
+        </div>
         <div className = "second-page-text">
-            <h2 className='top-text'> Create forms for different organizations </h2>
+            <h2 className='top-text-2'> Create forms for different organizations </h2>
             <h2 className='normal-text-2'> Are you a member of multiple organizations and want to create forms for each of them? Create as much forms as you want for each organization</h2>
 
             <ul>
@@ -33,10 +37,17 @@ export default function HomePage() {
                 <li className='normal-text'>And do so much more </li>
             </ul>
         </div>
+
+        <div className='part-3'>
+        <div className = "third-page-text">
+            <h2 className='top-text-3'> Assign and Keep track of all your forms </h2>
+            <h2 className='normal-text-3'> Reduce the workload of finding where forms are stored, with formfiller now you can easily manage forms assigned, forms submitted, form responses and so much more. </h2>
+       </div>
+        </div>
         </div>
 
         <footer>
-            <h3> Senoir design project for University of Wyoming Computer science department 2024</h3>
+            <h3> Senior design project for University of Wyoming Computer science department 2024</h3>
         </footer>
     </div>
 

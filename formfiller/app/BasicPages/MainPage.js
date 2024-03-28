@@ -84,7 +84,7 @@ export default function MainPage({orgName, orgRole}) {
                 <h3 className='organization-plus' onClick={() => setIsSearching(true)}> + </h3>
              </div>
              <div>
-             {isSearching ? <SearchOrganization /> : <OrganizationList setSelectedOrg={setSelectedOrg}/>}
+             {isSearching ? <SearchOrganization /> : <OrganizationList setSelectedOrg={setSelectedOrg}  selectedOrgName={selectedOrgName}/>}
              </div>
         </div>
         <div className='forms'>

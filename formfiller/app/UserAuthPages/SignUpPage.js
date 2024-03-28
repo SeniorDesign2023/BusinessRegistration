@@ -23,7 +23,7 @@ export default function SignUpPage() {
     };
 
     return (
-        <div>
+        <div className='auth-page'>
         <h1 className='form-filler-name'> Form Filler</h1>
         <h3 className='account-question'> have an account? <a href='/login'>Log in</a></h3>
         <form onSubmit={handleSubmit}>
