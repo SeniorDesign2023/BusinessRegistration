@@ -28,7 +28,7 @@ export default function LogInPage() {
 
 
     return (
-        <div>
+        <div className='auth-page'>
         <h1 className='form-filler-name'> Form Filler</h1>
         <h3 className='account-question'> Don't have an account? <a href='/signup'>sign up</a></h3>
         <form onSubmit={handleSubmit}>

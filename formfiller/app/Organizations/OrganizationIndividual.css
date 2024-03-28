@@ -1,14 +1,16 @@
 .org-ind{
     height: 46px;
-    width: 292px;
-    background-color: #D9D9D9;
+    width: 272px;
+    color: white;
+    background-color: black;
     /* background-color: #c0d6fa; */
     display: flex;
-    flex-direction: row; /* Change this line */
-    align-items: center; /* Adjust this as needed */
-    gap: 1vh;
+    /* flex-direction: row; /* Change this line */
+    align-items: center; 
+  
     margin-bottom: 10px;
     margin-left: 18px;
+    border-radius: 5px;
 }
 
 .org-ind-circle{
@@ -17,5 +19,12 @@
 }
 
 .org-ind-name{
+    margin-left: 55px;
     font-weight: lighter;
+}
+
+.org-ind-org-selected {
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold;
 }

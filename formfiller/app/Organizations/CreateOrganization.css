@@ -1,9 +1,13 @@
+*{
+    background-color:  #F9FBFF;
+}
+
 .exit{
     /* margin-top: 0px; */
     /* margin-bottom: 0px; */
     margin-left: 20px;
     margin-top:40px;
-    color: #3a93f9;
+    color: #555763;
 }
 .create-form-top-create{
     margin-right: 30%;
@@ -28,27 +32,34 @@ label{
     margin-bottom: 10px;
 }
 
-.form-name{
+.org-name{
     width: 632px;
-    height: 42px;
+    height: 39px;
     border: none;
-    background-color: #f2f2f2;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #646464;
     margin-top: 12px;
    
 }
 
-.json-input{
+.org-about{
     border: none;
-    background-color: #f2f2f2;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #646464;
     margin-top: 20px;
     height: 230px;
     width: 1093px;
 }
 
 .submit{
+    background-color: #555763;
+    border-radius: 8px;
+    color: white;
     margin-left: 35%;
     width: 470px;
-    height: 65px;
+    height: 60px;
     border: none;
     font-size: 22px;
 }

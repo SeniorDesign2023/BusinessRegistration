@@ -16,9 +16,9 @@ export default function AdminManageForms({orgName}) {
     return (
         <div>
             <h4 onClick={exit}> exit </h4>
-            <AdminFormIndivdual name = "Basic Info Form"/>
-            <AdminFormIndivdual name = "Another form"/>
-            <AdminFormIndivdual name = "Some other form made"/>
+            <AdminFormIndivdual name = "Basic Info Form" orgName={orgName}/>
+            <AdminFormIndivdual name = "Another form" orgName={orgName}/>
+            <AdminFormIndivdual name = "Some other form made" orgName={orgName}/>
         </div>
     )
 

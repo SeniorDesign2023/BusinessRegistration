@@ -18,6 +18,7 @@ export default function SearchOrganization() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+
             <label >
                 <input className='form-input'
                     type="text"
@@ -27,7 +28,7 @@ export default function SearchOrganization() {
                 />
             </label>
             
-            <input type="submit" value="enter" className='submit' />
+            <input type="submit" value="+" className='submit' />
         </form>
 
         <div className='create'  onClick={navigateToCreateOrgnization}> <h3 className='create-text'> Create Organization</h3></div>
