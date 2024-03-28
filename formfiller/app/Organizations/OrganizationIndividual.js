@@ -4,7 +4,6 @@ import './OrganizationIndividual.css';
 
 
 export default function OrganizationIndividual({ name, setSelectedOrg, isSelected }) {
-    console.log(`Rendering ${isSelected}`);
     const handleClick = () => {
         setSelectedOrg(name);
     };
