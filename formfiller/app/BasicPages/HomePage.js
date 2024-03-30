@@ -27,7 +27,7 @@ export default function HomePage() {
         </div>
         </div>
         <div className = "second-page-text">
-            <h2 className='top-text-2'> Create forms for different organizations </h2>
+            <h2 className='top-text-2'> Create Forms for Different Organizations </h2>
             <h2 className='normal-text-2'> Are you a member of multiple organizations and want to create forms for each of them? Create as much forms as you want for each organization</h2>
 
             <ul>

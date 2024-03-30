@@ -74,7 +74,8 @@ export default function MainPage({orgName, orgRole}) {
         <div className='mainpage'>
         <div className ='profile-line'>
             <div className='profile' onClick={navigateToProfile} >
-                 <Circle size="45px" />
+                 {/* <Circle size="45px" /> */}
+                 {/* <h2></h2> */}
             </div>
         </div>
 
