@@ -67,7 +67,7 @@ export default function CreateOrganization() {
                 />
             </label>
 
-            <label>
+            {/* <label>
                 Organization Members
                 <input className='org-name'
                     type="text"
@@ -75,9 +75,9 @@ export default function CreateOrganization() {
                     onChange={e => setOrganizationMembers(e.target.value)}
                     //required
                 />
-            </label>
+            </label> */}
 
-            <input type="submit" value="Generate form" className='submit' />
+            <input type="submit" value="Create Organization" className='submit' />
         </form>
         </div>
     );
