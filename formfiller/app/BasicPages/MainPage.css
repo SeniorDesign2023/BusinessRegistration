@@ -15,8 +15,13 @@ html,body{
     margin-top: 741px;
     margin-left: 5px;
     margin-bottom: 10px;
-    background-color: black;
-    
+    /* background-color: white;   */
+    justify-items: center;
+}
+
+.profile-icon{
+    height: 40px;
+    width: 40px;
 }
 .profile-line{
     width: 4%;
@@ -24,7 +29,8 @@ html,body{
     background-color: #e7f0fe;
     /* border-radius: 8px; */
     border-radius: 50px;
-    border-right: 1px solid black;
+    border-right: 1px solid gray;
+    
     /* background-color: #b8d3fd; */
 }
 
@@ -33,7 +39,7 @@ html,body{
     height: 100vh;
     /* background-color: #d3e3fd; */
     background-color: white; 
-    border-right: 1px solid black;
+    border-right: 1px solid gray;
     border-radius: 50px;
 }
 
@@ -95,6 +101,7 @@ html,body{
     color: #8e97a3;
     font-family: sans-serif;
     cursor: pointer;
+    font-size: 17px;
 }
 
 h5{

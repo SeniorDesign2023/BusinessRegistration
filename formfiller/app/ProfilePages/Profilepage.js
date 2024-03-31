@@ -148,7 +148,7 @@ export default function Profilepage() {
            <div className='bottom'>
             <input type="submit" value="Save Changes" className='submit'/>
             {/* will design this better */}
-            <div className='logout' onClick={navigateToHomePage}> <h3 className='logout-text'> Log out</h3> </div>
+            <div className='logout' onClick={navigateToHomePage}> Log out </div>
             </div>
         </form>
         </div>

@@ -1,7 +1,6 @@
 import './MainPage.css'
 import AllPage from '../FormViews/AllPage'
 import AssignedPage from '../FormViews/AssignedPage';
-import Circle from "../ExtraComponents/Circle"
 import CreatedPage from '../FormViews/Created';
 import Draft from '../FormViews/Draft';
 import OrganizationList from '../Organizations/OrganizationList';
@@ -11,6 +10,7 @@ import SubmittedPage from '../FormViews/SubmittedPage';
 import { useRouter } from 'next/router';
 import { IoCreate } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
+import { BsPersonCircle } from "react-icons/bs";
 
 export default function MainPage({orgName, orgRole}) {
     
@@ -74,8 +74,7 @@ export default function MainPage({orgName, orgRole}) {
         <div className='mainpage'>
         <div className ='profile-line'>
             <div className='profile' onClick={navigateToProfile} >
-                 {/* <Circle size="45px" /> */}
-                 {/* <h2></h2> */}
+               <BsPersonCircle className='profile-icon'/>
             </div>
         </div>
 

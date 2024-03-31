@@ -76,5 +76,6 @@ form{
 }
 
 .submit:active {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5); /* Add box shadow when button is clicked */
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5); Add box shadow when button is clicked */
+    border: 2px solid white;
 }

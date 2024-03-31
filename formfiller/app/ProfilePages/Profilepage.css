@@ -1,3 +1,7 @@
+*{
+    background-color:  #F9FBFF;
+ }
+
 label {
     display: flex;
     padding-right: 20px;
@@ -74,9 +78,7 @@ input{
    
 }
 
-*{
-   background-color:  #F9FBFF;
-}
+
 
 .submit{
     color: white;
@@ -92,22 +94,29 @@ input{
 .logout{
     /* font-size: 22px; */
     background-color:#555763 ;
-    
+    display: flex;
+    font-size: 20px;
+    color: white;
     border-radius: 8px;
     height: 52px;
     width: 182px;
     margin-top: 25px;
+    align-items: center;
+    justify-items: center;
+    /* text-align: center; */
+    font-weight: 500;
+    font-family: sans-serif;
     /* margin-left: 500px; */
 }
 
-.logout-text{
-    color: white;
+/* .logout-text{
+  
     margin-top: 12px;
     margin-left: 42px;
     font-size: 20px;
     font-weight: 600;
 
-}
+} */
 
 .bottom{
     display: flex;
