@@ -13,7 +13,7 @@ const database = require("./lib/database.js")
 const dispatch = require("./lib/post-dispatch.js")
 
 
-const morgan = require('morgan');
+//const morgan = require('morgan');
 
 
 
@@ -32,7 +32,7 @@ nextApp.prepare().then(async () => {
 		secret: "123456"
 	}))
 
-	server.use(morgan('dev'));
+	//server.use(morgan('dev'));
 	
 	server.get("/form", async (req, res) => {
 		if (!req.query.id) 
@@ -63,6 +63,19 @@ nextApp.prepare().then(async () => {
 			profile = await database.query("SELECT * FROM Users WHERE Email = ?", [currentUserEmail])
 
 			return res.json(profile[0]);
+		} else if (req.query.endpoint === "/fetchorganizations") {
+			console.log("fetchorganizations")
+			if (!req.session || !req.session.user || !req.session.user['Email']) {
+				return res.status(404).json({ error: "User profile not found" });
+			}
+			
+			const currentUserEmail = req.session.user['Email'];
+			console.log(currentUserEmail);
+
+			Orgs = await database.query("SELECT Organizations.*, 'Admin' AS Role FROM Organizations JOIN Admin_Org ON Organizations.Org_Tag = Admin_Org.Org_Tag WHERE Admin_Org.Email = ? UNION SELECT Organizations.*, 'Normal' AS Role FROM Organizations JOIN User_Org ON Organizations.Org_Tag = User_Org.Org_Tag WHERE User_Org.Email = ?;", [currentUserEmail, currentUserEmail])
+			console.log(Orgs);
+			return res.json(Orgs);
+
 		} else {
 			return res.status(404).json({ error: "Invalid endpoint" });
 		}

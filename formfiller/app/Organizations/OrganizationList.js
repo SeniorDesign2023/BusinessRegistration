@@ -1,17 +1,38 @@
 // OrganizationList.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import OrganizationIndividual from './OrganizationIndividual';
 
+import { get } from "@/lib/http"
+
 export default function OrganizationList({ selectedOrg, setSelectedOrg, selectedOrgName }) {
- 
+    const [organizations, setOrganizations] = useState([]);
+
+    useEffect(() => {
+
+        const fetchOrganizations = async () => {
+            try {
+                const response = await get('/fetchorganizations');
+                
+                setOrganizations(response.data);
+            } catch (error) {
+                console.error('Error fetching organizations:', error);
+                // Handle error
+            }
+        };
+
+        fetchOrganizations();
+    }, []);
+
     return (
         <div>
-            <OrganizationIndividual name="Organization 1" setSelectedOrg={() => setSelectedOrg("Organization 1", "Admin")} isSelected={selectedOrgName === "Organization 1"} />
-            <OrganizationIndividual name="University of Wyoming" setSelectedOrg={() => setSelectedOrg("University of Wyoming", "Admin")} isSelected={selectedOrgName === "University of Wyoming"} />
-            <OrganizationIndividual name="Organization 3" setSelectedOrg={() => setSelectedOrg("Organization 3", "Normal")} isSelected={selectedOrgName === "Organization 3"} />
-            <OrganizationIndividual name="Organization 4" setSelectedOrg={() => setSelectedOrg("Organization 4", "Admin")} isSelected={selectedOrgName === "Organization 4"} />
-            <OrganizationIndividual name="Organization 5" setSelectedOrg={() => setSelectedOrg("Organization 5", "Normal")} isSelected={selectedOrgName === "Organization 5"} />
-            <OrganizationIndividual name="Organization 6" setSelectedOrg={() => setSelectedOrg("Organization 6", "Normal")} isSelected={selectedOrgName === "Organization 6"} />
+            {organizations.map(org => (
+                <OrganizationIndividual
+                    key={org.Org_Tag} 
+                    name={org.Org_Name}
+                    setSelectedOrg={() => setSelectedOrg(org.Org_Name, org.Role)} 
+                    isSelected={selectedOrgName === org.Org_Name}
+                />
+            ))}
         </div>
     );
 }
