@@ -13,7 +13,7 @@ const database = require("./lib/database.js")
 const dispatch = require("./lib/post-dispatch.js")
 
 
-//const morgan = require('morgan');
+const morgan = require('morgan');
 
 
 
@@ -32,7 +32,7 @@ nextApp.prepare().then(async () => {
 		secret: "123456"
 	}))
 
-	//server.use(morgan('dev'));
+	server.use(morgan('dev'));
 	
 	server.get("/form", async (req, res) => {
 		if (!req.query.id) 
@@ -76,6 +76,26 @@ nextApp.prepare().then(async () => {
 			console.log(Orgs);
 			return res.json(Orgs);
 
+		} else if (req.query.endpoint === "/fetchmembers") {
+			
+			
+			const orgName = req.query.orgName; 
+			if (!orgName) {
+				return res.status(400).json({ error: "Organization name is required" });
+			}
+			
+			const members = await database.query("SELECT Email FROM User_Org WHERE Org_Tag = ?", [orgName]);
+			console.log(members)
+			return res.json(members);
+		} else if (req.query.endpoint === "/fetchadmins") {
+			//.log('fetch admins')
+			const orgName = req.query.orgName; 
+			if (!orgName) {
+				return res.status(400).json({ error: "Organization name is required" });
+			}
+			const admins = await database.query("SELECT Email FROM Admin_Org WHERE Org_Tag = ?", [orgName]);
+			console.log(admins)
+			return res.json(admins);
 		} else {
 			return res.status(404).json({ error: "Invalid endpoint" });
 		}
