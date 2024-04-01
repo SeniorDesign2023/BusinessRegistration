@@ -5,16 +5,11 @@ import { IoDocumentTextOutline } from "react-icons/io5";
 import { IoDocumentOutline } from "react-icons/io5";
 
 
-export default function FormIndividual({name, id}) {
+export default function FormIndividual({name}) {
     const router = useRouter();
-    
     const navigateToJsonFormPage = () => {
-        router.push({
-            pathname: "/form",
-            query: {id}
-        });
+        router.push('/form');
     };
-
     return (
         <div className='form-ind' onClick={navigateToJsonFormPage}>
               <IoDocumentOutline className='doc-icon'/>

@@ -6,14 +6,15 @@ import { useRouter } from 'next/router';
 
 import { post } from "@/lib/http"
 
-export default function CreateFormPage({orgTag, orgRole}) {
-    // if (orgTag == null) {
-    //     orgName = 'Organization 1'
-    // }
-    // if (orgRole == null) {
-    //     orgRole = 'Normal'
-    // }
+export default function CreateFormPage({orgName, orgRole}) {
+    if (orgName == null) {
+        orgName = 'Organization 1'
+    }
+    if (orgRole == null) {
+        orgRole = 'Normal'
+    }
     const [formName, setFormName] = useState('');
+    const [assign, setAssign] = useState('');
     const [json, setJson] = useState('');
     const router = useRouter();
 
@@ -22,18 +23,20 @@ export default function CreateFormPage({orgTag, orgRole}) {
         // Handle form submission logic here
         let res = await post("createform", {
             formName,
-            json,
-            org: orgTag
+            json
         })
-
-        navigateToMainPage()
+        router.push({
+            pathname: '/mainpage',
+            query: { org: orgName, role: orgRole },
+           
+        });
      
     };
     
     const navigateToMainPage = () => {
         router.push({
             pathname: '/mainpage',
-            query: { org: orgTag, role: orgRole },
+            query: { org: orgName, role: orgRole },
         });
     };
 

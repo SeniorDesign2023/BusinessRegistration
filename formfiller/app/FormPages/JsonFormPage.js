@@ -9,10 +9,7 @@ import {post} from "@/lib/http"
 export default function JsonFormPage({form}) {
     const router = useRouter();
     const navigateToMainPage = () => {
-        router.push({
-            pathname: "/mainpage",
-            query: { org: form.tag }
-        })
+        router.push('/mainpage');
     };
 
     const [data, setData] = useState()
@@ -27,7 +24,7 @@ export default function JsonFormPage({form}) {
 
         })
 
-        navigateToMainPage()
+        router.push("/mainpage")
 
     };
 
