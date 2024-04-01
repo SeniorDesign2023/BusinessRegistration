@@ -19,7 +19,7 @@ export default function OrganizationList({ selectedOrgTag, setSelectedOrg }) {
         try {
             return organizations.map(org => (
                 <OrganizationIndividual
-                    key={org.Org_Tag} 
+                    key={org.Org_Name} 
                     name={org.Org_Name}
                     setSelectedOrg={() => setSelectedOrg(org.Org_Tag, org.Org_Name, org.Role)} 
                     isSelected={selectedOrgTag === org.Org_Tag}
