@@ -10,8 +10,11 @@ const nextApp = next({dev})
 const handle = nextApp.getRequestHandler()
 
 const database = require("./lib/database.js")
-const dispatch = require("./lib/post-dispatch.js")
 
+const getDispatch = require("./lib/get-dispatch.js")
+const postDispatch = require("./lib/post-dispatch.js")
+
+const validate = require("./lib/get/validateuser.js")
 
 //const morgan = require('morgan');
 
@@ -45,44 +48,27 @@ nextApp.prepare().then(async () => {
 		//console.log(util.inspect(result[0]))
 
 		res.form = JSON.parse(result[0].Blank_Form_Data.toString())
+		res.form.tag = result[0].Org_Tag
 		res.form.name = result[0].Blank_Form_Name
 		res.form.id = req.query.id
 		return nextApp.render(req, res, "/form", req.query)
 	})
 
-	server.get("/get", async (req, res) => {
-		if (req.query.endpoint === "/fetchprofile") {
-			console.log("fetchprofile")
-			if (!req.session || !req.session.user || !req.session.user['Email']) {
-				return res.status(404).json({ error: "User profile not found" });
-			}
+	defaultHandle = (req, res) => handle(req, res)
+
+	server.get("/get", async (req, res) => getDispatch(req, res, handle));
+	server.post("/post", (req, res) => postDispatch(req, res, handle))
+
+	server.get("/homepage", defaultHandle)
+	server.get("/login", defaultHandle)
+	server.get("/signup", defaultHandle)
 	
-			const currentUserEmail = req.session.user['Email'];
-			console.log(currentUserEmail);
+	server.get('*', (req, res) => {
 
-			profile = await database.query("SELECT * FROM Users WHERE Email = ?", [currentUserEmail])
+		//if (validate(req, res, true))
+			handle(req, res)
 
-			return res.json(profile[0]);
-		} else if (req.query.endpoint === "/fetchorganizations") {
-			console.log("fetchorganizations")
-			if (!req.session || !req.session.user || !req.session.user['Email']) {
-				return res.status(404).json({ error: "User profile not found" });
-			}
-			
-			const currentUserEmail = req.session.user['Email'];
-			console.log(currentUserEmail);
-
-			Orgs = await database.query("SELECT Organizations.*, 'Admin' AS Role FROM Organizations JOIN Admin_Org ON Organizations.Org_Tag = Admin_Org.Org_Tag WHERE Admin_Org.Email = ? UNION SELECT Organizations.*, 'Normal' AS Role FROM Organizations JOIN User_Org ON Organizations.Org_Tag = User_Org.Org_Tag WHERE User_Org.Email = ?;", [currentUserEmail, currentUserEmail])
-			console.log(Orgs);
-			return res.json(Orgs);
-
-		} else {
-			return res.status(404).json({ error: "Invalid endpoint" });
-		}
-	});
-
-	server.post("/post", (req, res) => dispatch(req, res, handle))
-	server.get('*', (req, res) => handle(req, res))
+	})
 
 	server.listen(process.env.PORT || 3000, err => {
 		if (err) throw err

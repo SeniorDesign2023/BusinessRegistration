@@ -20,7 +20,7 @@ export default function Profilepage() {
         // Fetch user profile data when component mounts
         const fetchUserProfile = async () => {
             try {
-                const response = await get('/fetchprofile');             
+                const response = await get('fetchprofile');             
                 const userData = response.data; 
                 console.log(userData);
 
