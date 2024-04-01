@@ -1,14 +1,18 @@
 const dbquery = require("./get/dbquery")
-const fetchprofile = require("./get/fetchprofile")
+const fetchadmins = require("./get/fetchadmins")
+const fetchmembers = require("./get/fetchmembers")
 const fetchorganizations = require("./get/fetchorganizations")
 const fetchorgforms = require("./get/fetchorgforms")
+const fetchprofile = require("./get/fetchprofile")
 const validateuser = require("./get/validateuser")
 
 const table = {
     dbquery,
-    fetchprofile,
+    fetchadmins,
+    fetchmembers,
     fetchorganizations,
     fetchorgforms,
+    fetchprofile,
     validateuser,
 }
 
