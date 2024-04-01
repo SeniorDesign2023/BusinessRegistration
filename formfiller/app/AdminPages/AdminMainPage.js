@@ -4,61 +4,54 @@ import { useRouter } from 'next/router';
 
 import { get } from "@/lib/http"
 
-export default function AdminMainPage() {
+export default function AdminMainPage({name}) {
 
     const router = useRouter();
-    const [tag, setTag] = useState()
-    const [name, setName] = useState()
     const [newMember, setNewMember] = useState('');
     const [newAdmin, setNewAdmin] = useState('');
+    const [tag, setTag] = useState('');
     const [members, setMembers] = useState([]);
     const [admins, setAdmins] = useState([]);
 
     useEffect(() => {
-        setName(router.query.org)
-        setTag(router.query.tag)     
-        
-        get("fetchmembers", {
-            org: tag
-        }).then(response => setMembers(response.data))
-        
+        const { tag } = router.query;
+        if (tag) {
+            setTag(tag);
+        }                    
+        fetchMembers();
+        fetchAdmins();
+    }, [router.query]);
 
-        get("fetchadmins", {
-            org: tag
-        }).then(response => setAdmins(response.data))
+    const fetchMembers = async () => {
+        const { tag } = router.query;
+        try {
+            const response = await fetch(`/get?endpoint=/fetchmembers&orgName=${tag}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch members');
+            }
+            const membersData = await response.json();
+            setMembers(membersData); // Update the state with fetched members
+        } catch (error) {
+            console.error('Error fetching members:', error);
+            // Handle error
+        }
+    };
 
-    }, []);
-
-    // const fetchMembers = async () => {
-    //     const { tag } = router.query;
-    //     try {
-    //         const response = await fetch(`/get?endpoint=/fetchmembers&orgName=${tag}`);
-    //         if (!response.ok) {
-    //             throw new Error('Failed to fetch members');
-    //         }
-    //         const membersData = await response.json();
-    //         setMembers(membersData); // Update the state with fetched members
-    //     } catch (error) {
-    //         console.error('Error fetching members:', error);
-    //         // Handle error
-    //     }
-    // };
-
-    // const fetchAdmins = async () => {
-    //     let { tag } = router.query;
-    //     if(tag == undefined) return;
-    //     try {
-    //         const response = await fetch(`/get?endpoint=/fetchadmins&orgName=${tag}`);
-    //         if (!response.ok) {
-    //             throw new Error('Failed to fetch admins');
-    //         }
-    //         const adminsData = await response.json();
-    //         setAdmins(adminsData); // Update the state with fetched admins
-    //     } catch (error) {
-    //         console.error('Error fetching admins:', error);
-    //         // Handle error
-    //     }
-    // };
+    const fetchAdmins = async () => {
+        let { tag } = router.query;
+        if(tag == undefined) return;
+        try {
+            const response = await fetch(`/get?endpoint=/fetchadmins&orgName=${tag}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch admins');
+            }
+            const adminsData = await response.json();
+            setAdmins(adminsData); // Update the state with fetched admins
+        } catch (error) {
+            console.error('Error fetching admins:', error);
+            // Handle error
+        }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -67,17 +60,14 @@ export default function AdminMainPage() {
     const navigateToAdminManageForm = () => {
         router.push({
             pathname: '/adminmanageform',
-            query: { 
-                org: name,
-                tag 
-            },
+            query: { org: name},
         });
     };
 
     const exit = () => {
         router.push({
             pathname: '/mainpage',
-            query: { org: tag, role : 'Admin' },
+            query: { org: name, role : 'Admin' },
         });
     };
 

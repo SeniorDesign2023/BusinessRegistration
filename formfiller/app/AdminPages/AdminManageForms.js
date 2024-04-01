@@ -1,41 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "./AdminMainPage.css"
 import AdminFormIndivdual from './AdminFormIndividual'
 import { useRouter } from 'next/router';
 
-import { get } from "@/lib/http"
-
-export default function AdminManageForms() {
+export default function AdminManageForms({orgName}) {
     const router = useRouter();
-
-    const [name, setName] = useState()
-    const [tag, setTag] = useState()
-    const [forms, setForms] = useState([])
 
     const exit = () => {
         router.push({
             pathname: '/adminmainpage',
-            query: { org: name, tag: tag },
+            query: { org: orgName },
         });
     };
-
-    useEffect(() => {
-
-        setName(router.query.org)
-        setTag(router.query.tag)
-
-        get("fetchorgforms", {
-            org: router.query.tag
-        }).then(response => {
-            setForms(response.data)
-        })
-
-    }, [])
 
     return (
         <div>
             <h4 onClick={exit}> exit </h4>
-            {forms.map(form => (<AdminFormIndivdual formName={form.Blank_Form_Name} orgName={name} orgTag={tag}/>))}
+            <AdminFormIndivdual name = "Basic Info Form" orgName={orgName}/>
+            <AdminFormIndivdual name = "Another form" orgName={orgName}/>
+            <AdminFormIndivdual name = "Some other form made" orgName={orgName}/>
         </div>
     )
 
