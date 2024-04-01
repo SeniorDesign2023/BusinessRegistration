@@ -77,10 +77,10 @@ export default function MainPage({orgTag, orgRole}) {
     };
 
     const navigateToAdminMainPage = () => {
-        console.log("Current Tagon navigate to admin: " + currentTag);
+        console.log("Current Tagon navigate to admin: " + selectedOrgTag);
         router.push({
             pathname: '/adminmainpage',
-            query: { org: selectedOrgName, tag: currentTag}
+            query: { org: selectedOrgName, tag: selectedOrgTag}
         });
     };
 
