@@ -9,6 +9,7 @@ const createform = require("./post/createform")
 const submitprofile  = require("./post/submitprofile")
 const addadmin = require("./post/addadmin")
 const addmember = require("./post/addmember")
+const searchorg = require("./post/searchorg")
 
 const util = require("util")
 
@@ -21,7 +22,8 @@ const table = {
     createform,
     submitprofile,
     addadmin,
-    addmember
+    addmember,
+    searchorg
 }
 
 module.exports = function dispatch(req, res, nextHandle) {
