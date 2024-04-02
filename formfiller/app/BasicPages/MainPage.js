@@ -14,6 +14,7 @@ import { BsPersonCircle } from "react-icons/bs";
 
 export default function MainPage({orgName, orgRole}) {
     
+
     if (orgName == null) {
         orgName = 'Organization 1'
     }
@@ -26,10 +27,14 @@ export default function MainPage({orgName, orgRole}) {
     const [selectedOrgRole, setSelectedOrgRole] = useState(orgRole);
     const [isSearching, setIsSearching] = useState(false);
 
-    const setSelectedOrg = (name, role) => {
+    const [currentTag, setCurrentTag] = useState('');
+
+    const setSelectedOrg = (name, role, tag) => {
         setSelectedOrgName(name);
         setSelectedOrgRole(role);
+        setCurrentTag(tag); // Update currentTag using useState
         setSelectedPage('All');
+        console.log("Main Page: " + tag)
     }; 
 
     const router = useRouter();
@@ -64,9 +69,10 @@ export default function MainPage({orgName, orgRole}) {
     };
 
     const navigateToAdminMainPage = () => {
+        console.log("Current Tagon navigate to admin: " + currentTag);
         router.push({
             pathname: '/adminmainpage',
-            query: { org: selectedOrgName}
+            query: { org: selectedOrgName, tag: currentTag}
         });
     };
 
