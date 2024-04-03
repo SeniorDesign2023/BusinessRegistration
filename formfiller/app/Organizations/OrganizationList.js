@@ -9,9 +9,9 @@ export default function OrganizationList({ selectedOrg, setSelectedOrg, selected
 
     useEffect(() => {
 
-        const fetchOrganizations = async () => {
+        /*const fetchOrganizations = async () => {
             try {
-                const response = await get('/fetchorganizations');
+                const response = await get('fetchorganizations');
                 
                 setOrganizations(response.data);
             } catch (error) {
@@ -20,7 +20,12 @@ export default function OrganizationList({ selectedOrg, setSelectedOrg, selected
             }
         };
 
-        fetchOrganizations();
+        fetchOrganizations();*/
+
+        get("fetchorganizations").then(res => {
+            setOrganizations(res.data)
+        }).catch(err => console.error('Error fetching organizations:', error))
+
     }, []);
 
     return (

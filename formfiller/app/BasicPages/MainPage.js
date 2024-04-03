@@ -12,27 +12,27 @@ import { IoCreate } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import { BsPersonCircle } from "react-icons/bs";
 
-export default function MainPage({orgName, orgRole}) {
+export default function MainPage({orgName, orgRole, orgTag}) {
     
 
-    if (orgName == null) {
-        orgName = 'Organization 1'
-    }
-    if (orgRole == null) {
-        orgRole = 'Normal'
-    }
+    // if (orgName == null) {
+    //     orgName = 'Organization 1'
+    // }
+    // if (orgRole == null) {
+    //     orgRole = 'Normal'
+    // }
+
     const [selectedPage, setSelectedPage] = useState('All');
    // const [selectedOrg, setSelectedOrg] = useState('Organization 1');
     const [selectedOrgName, setSelectedOrgName] = useState(orgName);
     const [selectedOrgRole, setSelectedOrgRole] = useState(orgRole);
+    const [selectedOrgTag, setSelectedOrgTag] = useState(orgTag);
     const [isSearching, setIsSearching] = useState(false);
-
-    const [currentTag, setCurrentTag] = useState('');
 
     const setSelectedOrg = (name, role, tag) => {
         setSelectedOrgName(name);
         setSelectedOrgRole(role);
-        setCurrentTag(tag); // Update currentTag using useState
+        setSelectedOrgTag(tag); // Update currentTag using useState
         setSelectedPage('All');
         console.log("Main Page: " + tag)
     }; 
@@ -40,9 +40,13 @@ export default function MainPage({orgName, orgRole}) {
     const router = useRouter();
 
     const renderPage = () => {
+
+        if (!selectedOrgTag)
+            return <p>Please select an organization.</p>
+
         switch(selectedPage) {
             case 'All':
-                return <AllPage organization={selectedOrgName}/>;
+                return <AllPage organization={selectedOrgTag}/>;
             case 'Assigned':
                 return <AssignedPage organization={selectedOrgName}/>;
             case 'Drafts':

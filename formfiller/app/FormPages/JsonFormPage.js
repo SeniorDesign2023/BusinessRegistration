@@ -20,6 +20,7 @@ export default function JsonFormPage({form}) {
 
             name: form.name,
             data,
+            org: form.tag,
             isDraft,
 
         })
