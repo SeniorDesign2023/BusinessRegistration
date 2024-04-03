@@ -1,4 +1,11 @@
-#To do List Front-end
-* Replace colored boxes with icons
-* Make a color palette for everything
-* Resize so that the sizing looks good in all systems
+# To do List Front-end
+* Properly format Logout button in the profile page
+* Properly format the create organization button
+* Properly format manage form button in adminMainPage
+* May have to add better design for AdminMainPage
+
+# Category unknown
+* When mainpage is initially started it should initially be on a selected organization
+
+--- Other things
+* Adding organizations through the search organization functionality
