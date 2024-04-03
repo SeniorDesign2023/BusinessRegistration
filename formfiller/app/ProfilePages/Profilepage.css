@@ -91,23 +91,22 @@ input{
 }
 
 
-.logout{
-    /* font-size: 22px; */
-    background-color:#555763 ;
+.logout {
     display: flex;
-    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Adjust font size as needed */
+    font-weight: 500;
+    font-family: sans-serif;
     color: white;
+    background-color: #555763;
     border-radius: 8px;
     height: 52px;
     width: 182px;
     margin-top: 25px;
-    align-items: center;
-    justify-items: center;
-    /* text-align: center; */
-    font-weight: 500;
-    font-family: sans-serif;
-    /* margin-left: 500px; */
+    cursor: pointer;
 }
+
 
 /* .logout-text{
   

@@ -55,6 +55,10 @@ export default function MainPage({orgName, orgRole}) {
                 return <AllPage organization={selectedOrgName}/>;
         }
     };
+     
+    const closeSearch = () => {
+        setIsSearching(false);
+    };
     
 
     const navigateToProfile = () => {
@@ -91,7 +95,7 @@ export default function MainPage({orgName, orgRole}) {
                 <h3 className='organization-plus' onClick={() => setIsSearching(true)}> + </h3>
              </div>
              <div>
-             {isSearching ? <SearchOrganization /> : <OrganizationList setSelectedOrg={setSelectedOrg}  selectedOrgName={selectedOrgName}/>}
+             {isSearching ? <SearchOrganization closeSearch={closeSearch} /> : <OrganizationList setSelectedOrg={setSelectedOrg}  selectedOrgName={selectedOrgName}/>}
              </div>
         </div>
         <div className='forms'>

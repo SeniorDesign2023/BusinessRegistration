@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import OrganizationIndividual from './OrganizationIndividual';
 import "./SearchOrganization.css"
 import { useRouter } from 'next/router';
+import { AiOutlineClose } from "react-icons/ai";
+
+
 
 import { post } from "@/lib/http"
 
-export default function SearchOrganization() {
+export default function SearchOrganization({closeSearch}) {
     const [organization, setOrganization] = useState('');
     const router = useRouter();
 
@@ -22,6 +25,9 @@ export default function SearchOrganization() {
         //router.push('/mainpage');
     };
 
+    const exit = () => {
+        closeSearch();
+    };
     const navigateToCreateOrgnization = () => {
         router.push('/createorganization');
     };
@@ -38,11 +44,13 @@ export default function SearchOrganization() {
                     required
                 />
             </label>
-            
-            <input type="submit" value="+" className='submit' />
+            <div className='buttons'>
+                <input type="submit" value="+" className='submit' />
+                <AiOutlineClose onClick={exit} className="exit"/>
+            </div>
         </form>
 
-        <div className='create'  onClick={navigateToCreateOrgnization}> <h3 className='create-text'> Create Organization</h3></div>
+        <div className= 'create' onClick={navigateToCreateOrgnization}> <h3 className='create-text'> Create Organization</h3></div>
         </div>
     );
 }
