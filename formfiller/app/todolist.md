@@ -1,5 +1,4 @@
 # To do List Front-end
-* Properly format the create organization button
 * Properly format manage form button in adminMainPage
 * May have to add better design for AdminMainPage
 
