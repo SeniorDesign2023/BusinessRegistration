@@ -50,7 +50,7 @@ export default function SearchOrganization({closeSearch}) {
             </div>
         </form>
 
-        <div className= 'create' onClick={navigateToCreateOrgnization}> <h3 className='create-text'> Create Organization</h3></div>
+        <div className= 'create' onClick={navigateToCreateOrgnization}> Create Organization</div>
         </div>
     );
 }
