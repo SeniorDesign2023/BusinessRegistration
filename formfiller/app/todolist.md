@@ -3,7 +3,6 @@
 * Properly format the create organization button
 * Properly format manage form button in adminMainPage
 * May have to add better design for AdminMainPage
-* Add exit button with the search organization page
 
 # Category unknown
 * When mainpage is initially started it should initially be on a selected organization
