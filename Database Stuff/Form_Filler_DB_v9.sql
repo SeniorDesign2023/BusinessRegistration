@@ -166,9 +166,9 @@ ALTER TABLE `Admin_Org`
   ADD KEY `OrgTag` (`Org_Tag`);
 
 --
--- Indexes for table `Assigned_Froms`
+-- Indexes for table `Assigned_Forms`
 --
-ALTER TABLE `Assigned_Froms`
+ALTER TABLE `Assigned_Forms`
   ADD KEY `Email` (`Email`),
   ADD KEY `Blank_Form_ID` (`Blank_Form_ID`);
 
@@ -233,11 +233,11 @@ ALTER TABLE `Admin_Org`
   ADD CONSTRAINT `Admin_Org_ibfk_4` FOREIGN KEY (`Org_Tag`) REFERENCES `Organizations` (`Org_Tag`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `Assigned_Froms`
+-- Constraints for table `Assigned_Forms`
 --
-ALTER TABLE `Assigned_Froms`
-  ADD CONSTRAINT `Assigned_Froms_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `Users` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `Assigned_Froms_ibfk_2` FOREIGN KEY (`Blank_Form_ID`) REFERENCES `Blank_Forms` (`Blank_Form_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `Assigned_Forms`
+  ADD CONSTRAINT `Assigned_Forms_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `Users` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Assigned_Forms_ibfk_2` FOREIGN KEY (`Blank_Form_ID`) REFERENCES `Blank_Forms` (`Blank_Form_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `Blank_Forms`
