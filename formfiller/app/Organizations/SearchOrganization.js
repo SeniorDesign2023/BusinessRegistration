@@ -3,12 +3,23 @@ import OrganizationIndividual from './OrganizationIndividual';
 import "./SearchOrganization.css"
 import { useRouter } from 'next/router';
 
+import { post } from "@/lib/http"
+
 export default function SearchOrganization() {
     const [organization, setOrganization] = useState('');
     const router = useRouter();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        let res = await post("searchorg", {
+            organization
+        })
+
+        console.log(res.data);
+        setOrganization('');
+        //does not work :(
+        //router.push('/mainpage');
     };
 
     const navigateToCreateOrgnization = () => {

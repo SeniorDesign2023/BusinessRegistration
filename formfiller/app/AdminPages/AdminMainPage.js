@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./AdminMainPage.css"
 import { useRouter } from 'next/router';
 
-import { get } from "@/lib/http"
+import { get, post } from "@/lib/http"
 
 export default function AdminMainPage({name}) {
 
@@ -53,8 +53,36 @@ export default function AdminMainPage({name}) {
         }
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmitAdmin = async (event) => {
         event.preventDefault();
+        let { tag } = router.query;
+        if(tag == undefined) return;
+        let res = await post("addadmin", {
+            newAdmin,
+            tag
+        })
+        console.log(res.data.success);
+        if(res.data.success){
+            fetchMembers();
+            fetchAdmins(); 
+        }
+        setNewAdmin('');
+    };
+
+    const handleSubmitMember = async (event) => {
+        event.preventDefault();
+        let { tag } = router.query;
+        if(tag == undefined) return;
+        let res = await post("addmember", {
+            newMember,
+            tag
+        })
+        console.log(res.data.success);
+        if(res.data.success){
+            fetchMembers();
+            fetchAdmins(); 
+        }
+        setNewMember('');
     };
 
     const navigateToAdminManageForm = () => {
@@ -82,7 +110,7 @@ export default function AdminMainPage({name}) {
           <div className='member-admin'>
           <div className='member'>
                 <h1> Members </h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitMember}>
                     <label >
                         <input className='form-input'
                             type="text"
@@ -101,7 +129,7 @@ export default function AdminMainPage({name}) {
             <div className='admin'>
              <div className='admin-in'>
                 <h1> Admins </h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitAdmin}>
                 <label >
                     <input className='form-input'
                         type="text"
