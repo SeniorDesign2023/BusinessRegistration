@@ -32,7 +32,7 @@ export default function MainPage({orgName, orgRole, orgTag}) {
     const setSelectedOrg = (name, role, tag) => {
         setSelectedOrgName(name);
         setSelectedOrgRole(role);
-        setSelectedOrgTag(tag); // Update currentTag using useState
+        setSelectedOrgTag(tag); 
         setSelectedPage('All');
         console.log("Main Page: " + tag)
     }; 
@@ -77,10 +77,10 @@ export default function MainPage({orgName, orgRole, orgTag}) {
     };
 
     const navigateToAdminMainPage = () => {
-        console.log("Current Tagon navigate to admin: " + currentTag);
+        console.log("Current Tagon navigate to admin: " + selectedOrgTag);
         router.push({
             pathname: '/adminmainpage',
-            query: { org: selectedOrgName, tag: currentTag}
+            query: { org: selectedOrgName, tag: selectedOrgTag}
         });
     };
 
