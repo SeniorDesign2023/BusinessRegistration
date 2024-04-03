@@ -45,11 +45,11 @@ INSERT INTO `Admin_Org` (`Email`, `Org_Tag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Assigned_Froms`
+-- Table structure for table `Assigned_Forms`
 --
 
-DROP TABLE IF EXISTS `Assigned_Froms`;
-CREATE TABLE `Assigned_Froms` (
+DROP TABLE IF EXISTS `Assigned_Forms`;
+CREATE TABLE `Assigned_Forms` (
   `Email` varchar(320) NOT NULL,
   `Blank_Form_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
