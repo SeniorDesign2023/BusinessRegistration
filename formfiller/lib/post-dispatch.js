@@ -4,12 +4,8 @@ const login = require("./post/login")
 const signup = require("./post/signup")
 const createorg = require("./post/createorg")
 const formresponse = require("./post/formresponse")
-const dbquery = require("./post/dbquery")
 const createform = require("./post/createform")
 const submitprofile  = require("./post/submitprofile")
-const addadmin = require("./post/addadmin")
-const addmember = require("./post/addmember")
-const searchorg = require("./post/searchorg")
 
 const util = require("util")
 
@@ -18,22 +14,16 @@ const table = {
     signup,
     createorg,
     formresponse,
-    dbquery,
     createform,
-    submitprofile,
-    addadmin,
-    addmember,
-    searchorg
+    submitprofile
 }
 
 module.exports = function dispatch(req, res, nextHandle) {
 
-    //console.log(util.inspect(req))
-
     var endpoint = req.body.endpoint
 
     if (!endpoint) {
-        res.status("400").send({message: "No POST endpoint specified"})
+        res.status(400).send({message: "No POST endpoint specified"})
         return
     }
 

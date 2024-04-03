@@ -2,32 +2,15 @@ import React, { useState } from 'react';
 import OrganizationIndividual from './OrganizationIndividual';
 import "./SearchOrganization.css"
 import { useRouter } from 'next/router';
-import { AiOutlineClose } from "react-icons/ai";
 
-
-
-import { post } from "@/lib/http"
-
-export default function SearchOrganization({closeSearch}) {
+export default function SearchOrganization() {
     const [organization, setOrganization] = useState('');
     const router = useRouter();
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-
-        let res = await post("searchorg", {
-            organization
-        })
-
-        console.log(res.data);
-        setOrganization('');
-        //does not work :(
-        //router.push('/mainpage');
     };
 
-    const exit = () => {
-        closeSearch();
-    };
     const navigateToCreateOrgnization = () => {
         router.push('/createorganization');
     };
@@ -44,13 +27,11 @@ export default function SearchOrganization({closeSearch}) {
                     required
                 />
             </label>
-            <div className='buttons'>
-                <input type="submit" value="+" className='submit' />
-                <AiOutlineClose onClick={exit} className="exit"/>
-            </div>
+            
+            <input type="submit" value="+" className='submit' />
         </form>
 
-        <div className= 'create' onClick={navigateToCreateOrgnization}> Create Organization</div>
+        <div className='create'  onClick={navigateToCreateOrgnization}> <h3 className='create-text'> Create Organization</h3></div>
         </div>
     );
 }

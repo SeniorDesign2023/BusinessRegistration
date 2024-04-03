@@ -3,9 +3,9 @@ import React from 'react';
 import './OrganizationIndividual.css';
 import { VscOrganization } from "react-icons/vsc";
 
-export default function OrganizationIndividual({ name, setSelectedOrg, isSelected }) {
+export default function OrganizationIndividual({name, setSelectedOrg, isSelected }) {
     const handleClick = () => {
-        setSelectedOrg(name);
+        setSelectedOrg();
     };
 
     const style = isSelected ? { backgroundColor: '#e7f0fe', color: '#3e87f5' } : {};

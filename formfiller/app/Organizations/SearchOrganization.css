@@ -4,12 +4,9 @@
     border-radius: 8px;
     width: 213px;
     height: 48px;
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 580px;
     margin-left: 40px;
-    display: flex;
-    align-items: center; /* Vertically center the content */
-    justify-content: center;
 }
 
 label{
@@ -36,18 +33,4 @@ input{
 .create-text{
     margin-top: 50px;
     margin-left: 25px;
-}
-
-.buttons{
-    display: flex;
-    flex-direction: row; 
-}
-
-.exit{
-    font-weight: 500;
-    margin-left: 5px;
-    margin-top: 0px;
-    font-size: 120px;
-    height: 40px;
-    width: 20px;
 }
