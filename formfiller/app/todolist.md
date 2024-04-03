@@ -5,6 +5,7 @@
 
 # Category unknown
 * When mainpage is initially started it should initially be on a selected organization
+        ^ What if the user is not a member of any organizations?
 
 --- Other things
 * Adding organizations through the search organization functionality
