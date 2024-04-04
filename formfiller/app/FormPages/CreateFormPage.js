@@ -22,12 +22,31 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Handle form submission logic here
+        
+        try {
+            const obj = JSON.parse(json)
+            
+            if (!obj) {
+                console.log("Entry not a JSON object")
+                return
+            }
+
+            if (!obj.schema) {
+                console.log("Entry does not contain a schema object")
+                return
+            }
+
+        } catch (_) {
+            console.log("Entry not valid JSON")
+            return
+        }
+
         let res = await post("createform", {
             formName,
             json,
             org: router.query.org
         })
+
         router.push({
             pathname: '/mainpage',
             query: { org: orgName, role: orgRole, tag: orgTag},
