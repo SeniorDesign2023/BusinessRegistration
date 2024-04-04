@@ -1,0 +1,22 @@
+.top{
+    display: flex;
+    justify-content: row;
+    gap: 40px;
+}
+.syntax{
+    background-color: black;
+    color: white;
+    width: max-content;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.exit{
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.page-content{
+    margin-left: 60px;
+}

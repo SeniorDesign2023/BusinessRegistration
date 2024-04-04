@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import "./CreateFormPage.css"
 import { useRouter } from 'next/router';
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
 import { post } from "@/lib/http"
 
@@ -17,7 +18,6 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
     const router = useRouter();
     
     const [formName, setFormName] = useState('');
-    const [assign, setAssign] = useState('');
     const [json, setJson] = useState('');
 
     const handleSubmit = async (event) => {
@@ -42,7 +42,13 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
             query: { org: orgName, role: orgRole, tag: orgTag },
         });
     };
-
+    
+    const navigateToFormSchema = () => {
+        router.push({
+            pathname: '/formschemapage',
+            query: { org: orgName, role: orgRole, tag: orgTag },
+        });
+    };
 
     return (
         <div>
@@ -62,7 +68,10 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
                 />
             </label>
             <label>
-                Input JSON for defining form
+                <div className='input-json-top'>
+                  Input JSON for defining form
+                  <IoIosInformationCircleOutline onClick={navigateToFormSchema} className ="info-button" />
+                </div>
                 <textarea className='json-input'
                     type="text"
                     value={json}
