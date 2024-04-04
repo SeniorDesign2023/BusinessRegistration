@@ -2,7 +2,7 @@ const database = require("../database")
 
 module.exports = async function fetchAdmins(req, res) {
 
-    const tag = req.query.org; 
+    const tag = req.query.orgName; 
     if (!tag) {
         return res.status(400).json({ error: "Organization name is required" });
     }
