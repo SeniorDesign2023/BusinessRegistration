@@ -9,6 +9,7 @@ module.exports = async function fetchOrgForms(req, res) {
     const tag = req.query.org
 
     const allForms = await database.query("SELECT * FROM Blank_Forms WHERE Org_Tag = ?", [tag])
+    var user = req.session.user.Email
 
     // res.json({})
     // return
@@ -17,7 +18,6 @@ module.exports = async function fetchOrgForms(req, res) {
     
     case "assigned":
         
-        var user = req.session.user.Email
         var assigned = await database.query("SELECT Blank_Form_ID FROM Assigned_Forms WHERE Email = ?", [user])
         console.log(assigned)
 
@@ -25,6 +25,7 @@ module.exports = async function fetchOrgForms(req, res) {
         break
 
     case "submitted":
+        
         res.json(allForms)
         break
     
