@@ -23,13 +23,13 @@ export default function SearchOrganization({closeSearch}) {
    
         console.log(res.data);
         setOrganization('');
-        //based on the res.data response when that is figured out
+      //  based on the res.data response when that is figured out
         // if (res.data.response) {
         //     setJoined(true);
         //     setErrorMessage('');
         //     sleep(1)
         //     exit();
-        //  
+         
         // } else {
         //     setJoined(false);
         //     setErrorMessage('Could not join organization');
@@ -64,7 +64,7 @@ export default function SearchOrganization({closeSearch}) {
         </form>
 
         <div>
-           {errorMessage && <h1>{errorMessage}</h1>}
+           {errorMessage && <div className='error'>{errorMessage}</div>}
            {joined && <div className='joined'>Joined organization {organization}</div>}
         </div>
         <div className= 'create' onClick={navigateToCreateOrgnization}> Create Organization</div>

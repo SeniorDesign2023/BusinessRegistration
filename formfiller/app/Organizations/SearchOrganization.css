@@ -66,3 +66,19 @@ input{
     background-color: black;
     color: green;
 }
+
+.error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    margin-top: 20px;
+    width: max-content;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid black;
+    background-color: white;
+    color: red;
+}
