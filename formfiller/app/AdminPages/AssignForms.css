@@ -1,0 +1,33 @@
+*{
+    background-color:  #F9FBFF;
+    /* font-weight: lighter; */
+    font-weight: lighter;
+}
+.top{
+    display: flex;
+    gap: 30px;
+}
+.assign-form{
+   
+    margin-left: 50px;
+}
+
+.form-name{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.exit{
+    margin-top: 35px;
+}
+
+.form-input{
+    width: 190px;
+    height: 25px;
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+
+.submit{
+    height: 30px;
+}

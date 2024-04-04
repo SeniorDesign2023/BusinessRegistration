@@ -1,0 +1,15 @@
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+
+button{
+    font-size: 18px;
+  
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+
+}

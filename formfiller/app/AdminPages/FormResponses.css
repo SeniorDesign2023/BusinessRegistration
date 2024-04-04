@@ -1,8 +1,17 @@
+*{
+    background-color:  #F9FBFF;
+}
+
 .json-text{
     height: 70%;
     width:80%;
     background-color: rgb(208, 208, 208);
     padding: 2%;
+}
+
+pre{
+    background-color: rgb(208, 208, 208);
+    /* background-color: #F9FBFF; */
 }
 
 .group-container {

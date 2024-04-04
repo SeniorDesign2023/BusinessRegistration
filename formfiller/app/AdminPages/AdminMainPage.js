@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./AdminMainPage.css"
 import { useRouter } from 'next/router';
+import { IoMenu } from "react-icons/io5";
 
 import { get, post } from "@/lib/http"
 
@@ -101,15 +102,20 @@ export default function AdminMainPage({name}) {
 
     return (
       
-    <div className='admin-mainpage'>
+    <div>
           <div className='admin-top'>
                 <h4 className= "exit" onClick={exit}> exit</h4>
                 <h4 className='admin-top-name'>{name} Admin Page</h4>
+                <div className='manage' onClick={navigateToAdminManageForm} >
+                    <IoMenu className='manage-icon'/>
+                    <h5 className='manage-text'> Manage forms</h5>
+                </div>
           </div>
-          <h1 className = "manage-forms" onClick={navigateToAdminManageForm}> Manage forms</h1>
+          <div className='admin-mainpage'>
+          {/* <h1 className = "manage-forms" onClick={navigateToAdminManageForm}> Manage forms</h1> */}
           <div className='member-admin'>
           <div className='member'>
-                <h1> Members </h1>
+                <h2> Members </h2>
                 <form onSubmit={handleSubmitMember}>
                     <label >
                         <input className='form-input'
@@ -128,7 +134,7 @@ export default function AdminMainPage({name}) {
 
             <div className='admin'>
              <div className='admin-in'>
-                <h1> Admins </h1>
+                <h2> Admins </h2>
                 <form onSubmit={handleSubmitAdmin}>
                 <label >
                     <input className='form-input'
@@ -146,6 +152,7 @@ export default function AdminMainPage({name}) {
                 ))}
             </div>
             </div>
+          </div>
           </div>
     </div>
     )

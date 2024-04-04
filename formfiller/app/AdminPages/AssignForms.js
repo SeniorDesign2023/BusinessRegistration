@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./AssignForms.css"
 import { useRouter } from 'next/router';
 
 export default function AssignForm({formName, orgName}) {
@@ -21,11 +22,12 @@ export default function AssignForm({formName, orgName}) {
     return(
         <div>
              {/* <div className='member'> */}
-                <div>
-                <h4 onClick={exit}> exit</h4>
-                <h4>{formName}</h4>
+                <div className='top'>
+                <h4 onClick={exit} className= "exit"> exit</h4>
+                <h4 className='form-name'>{formName}</h4>
                 </div>
-                <h1> Assigned </h1>
+                <div className='assign-form'>
+                <h2> Assigned </h2>
                 <form onSubmit={handleSubmit}>
                     <label >
                         <input className='form-input'
@@ -36,11 +38,11 @@ export default function AssignForm({formName, orgName}) {
                     </label>
                   <input type="submit" value="+" className='submit' />
                 </form>
-                <h2> Assigned Member 1</h2>
-                <h2> Assigned Member 2</h2>
-                <h2> Assigned Member 3</h2>
-                <h2> Assigned Member 4</h2>
+                <h3> Assigned Member 1</h3>
+                <h3> Assigned Member 2</h3>
+         
             {/* </div> */}
+            </div>
         </div>
     )
 }

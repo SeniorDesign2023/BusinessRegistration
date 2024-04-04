@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useRouter } from 'next/router';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 import { JsonForms } from '@jsonforms/react';
+import "./JsonFormPage.css"
 
 //import database from "@/lib/database";
 import {post} from "@/lib/http" 
@@ -41,7 +42,10 @@ export default function JsonFormPage({form}) {
                     ({errors, data}) => setData(data)
                 }
             />
-            <button type="button" onClick={() => postData(false)}>Save</button>
+            <div className='buttons'>
+                <button type="button" onClick={() => postData(false)}>Submit</button>
+                <button type="button">Save Draft</button>
+            </div>
 
         </div>
     )

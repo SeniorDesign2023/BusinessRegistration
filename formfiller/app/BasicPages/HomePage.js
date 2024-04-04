@@ -23,7 +23,7 @@ export default function HomePage() {
             <h2 className='top-text'> Introducing Form Filler</h2>
             <div></div>
             <div></div>
-            <h2 className='normal-text'> A centralized location to access and fill out all your forms from all your organizations. Manage the cluster of all your forms, and manage them all.</h2>
+            <h2 className='normal-text'> A centralized location to manage all your forms from different organizations. Manage, create and access all yours forms all in one place!</h2>
         </div>
         </div>
         <div className = "second-page-text">

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useRouter } from 'next/router';
+import { IoMdArrowBack } from "react-icons/io";
 import "./FormResponses.css"
 export default function FormResponses({formName, orgName}) {
     const router = useRouter();
@@ -23,7 +24,7 @@ export default function FormResponses({formName, orgName}) {
  
     return (
         <div>
-            <h4 onClick={exit}> exit </h4>
+            <h4 onClick={exit}> <IoMdArrowBack/> </h4>
             <h1>{formName}</h1>
             <div className='group-container'>
             <div >

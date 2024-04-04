@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./AdminMainPage.css"
+import "./AdminManageForms.css"
 import AdminFormIndivdual from './AdminFormIndividual'
 import { useRouter } from 'next/router';
 
@@ -37,7 +37,9 @@ export default function AdminManageForms({orgName}) {
     return (
         <div>
             <h4 onClick={exit}> exit </h4>
+            <div className='forms'>
             {forms.map(form => (<AdminFormIndivdual name={form.Blank_Form_Name} orgName={name} orgTag={tag} />))}
+            </div>
         </div>
     )
 
