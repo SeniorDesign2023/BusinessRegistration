@@ -14,7 +14,6 @@ import { BsPersonCircle } from "react-icons/bs";
 
 export default function MainPage({orgName, orgRole, orgTag}) {
     
-
     // if (orgName == null) {
     //     orgName = 'Organization 1'
     // }

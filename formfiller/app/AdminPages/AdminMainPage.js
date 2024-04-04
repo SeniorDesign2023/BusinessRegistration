@@ -88,7 +88,7 @@ export default function AdminMainPage({name}) {
     const navigateToAdminManageForm = () => {
         router.push({
             pathname: '/adminmanageform',
-            query: { org: name},
+            query: { org: name, tag },
         });
     };
 
