@@ -33,10 +33,14 @@ module.exports = function dispatch(req, res, nextHandle) {
     var endpoint = req.body.endpoint
 
     if (!endpoint) {
-        res.status("400").send({message: "No POST endpoint specified"})
+        res.status(400).send({message: "No POST endpoint specified"})
         return
     }
 
-    return table[endpoint](req, res)
+    try {
+        return table[endpoint](req, res)
+    } catch (e) {
+        res.status(500).json(e)
+    }
 
 }

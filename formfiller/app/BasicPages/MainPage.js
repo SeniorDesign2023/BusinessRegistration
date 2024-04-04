@@ -108,7 +108,7 @@ export default function MainPage({orgName, orgRole, orgTag}) {
                     <h5 className={selectedPage === 'Assigned' ? 'selected' : ''} onClick={() => setSelectedPage('Assigned')}>Assigned </h5>
                     <h5 className={selectedPage === 'Drafts' ? 'selected' : ''} onClick={() => setSelectedPage('Drafts')}>Drafts </h5>
                     <h5 className={selectedPage === 'Submitted' ? 'selected' : ''} onClick={() => setSelectedPage('Submitted')}>Submitted </h5>
-                    {selectedOrgRole === 'Admin' &&
+                    {selectedOrgRole === 'Admin' && selectedOrgTag &&
                         <>
                             <h5 className={selectedPage === 'Created' ? 'selected' : ''} onClick={() => setSelectedPage('Created')}>Created</h5>
                             <div onClick={navigateToCreateForm}> <IoCreate className='create-form' /></div>
@@ -119,8 +119,8 @@ export default function MainPage({orgName, orgRole, orgTag}) {
     
              <div className = "line"></div>
              <div>
-                    {renderPage()}
-                </div>
+                {renderPage()}
+            </div>
         </div>
         </div>
     )

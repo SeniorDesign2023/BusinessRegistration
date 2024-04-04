@@ -1,0 +1,220 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Apr 04, 2024 at 07:14 PM
+-- Server version: 5.7.33-0ubuntu0.16.04.1
+-- PHP Version: 7.0.33-0ubuntu0.16.04.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `Form_Filler_DB`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Admin_Org`
+--
+
+CREATE TABLE IF NOT EXISTS `Admin_Org` (
+  `Email` varchar(320) NOT NULL,
+  `Org_Tag` varchar(15) NOT NULL,
+  UNIQUE KEY `Email` (`Email`,`Org_Tag`),
+  KEY `UserID` (`Email`),
+  KEY `OrgTag` (`Org_Tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Admin_Org`
+--
+
+INSERT INTO `Admin_Org` (`Email`, `Org_Tag`) VALUES
+('movies@flix.net', 'flixnet'),
+('testuser1@test.com', 'TestOrg1'),
+('testuser1@test.com', 'testorg2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Assigned_Forms`
+--
+
+CREATE TABLE IF NOT EXISTS `Assigned_Forms` (
+  `Email` varchar(320) NOT NULL,
+  `Blank_Form_ID` int(11) NOT NULL,
+  KEY `Email` (`Email`),
+  KEY `Blank_Form_ID` (`Blank_Form_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Assigned_Forms`
+--
+
+INSERT INTO `Assigned_Forms` (`Email`, `Blank_Form_ID`) VALUES
+('movies@flix.net', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Blank_Forms`
+--
+
+CREATE TABLE IF NOT EXISTS `Blank_Forms` (
+  `Blank_Form_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Blank_Form_Name` text NOT NULL,
+  `Blank_Form_Data` text NOT NULL,
+  `Org_Tag` varchar(15) NOT NULL,
+  PRIMARY KEY (`Blank_Form_ID`),
+  KEY `Org_Tag` (`Org_Tag`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Blank_Forms`
+--
+
+INSERT INTO `Blank_Forms` (`Blank_Form_ID`, `Blank_Form_Name`, `Blank_Form_Data`, `Org_Tag`) VALUES
+(1, 'Movie Request', '{\n	"schema": {	\n		"type": "object",\n		"properties": {\n			"Title": {\n				"type": "string",\n				"description": "Title of the movie"\n			},\n			"Description": {\n				"type": "string",\n				"description": "Brief description of the movie"\n			},\n			"Studio": {\n				"type": "string",\n				"description": "Studio which produced the movie"\n			},\n			"Year": {\n				"type": "integer",\n				"description": "Year the movie was released"\n			}\n		}\n	}\n}', 'flixnet'),
+(2, 'Payment Info', '{\n	"schema": {	\n		"type": "object",\n		"properties": {\n			"A": {\n				"type": "string",\n				"description": "this is a description"\n			},\n			"B": {\n				"type": "boolean"\n			},\n			"C": {\n				"type": "object",\n				"properties": {\n					"D": {\n						"type": "integer"\n					},\n					"E": {\n						"type": "string",\n						"format": "date"\n					}\n				}\n			}\n		}\n	}\n}', 'flixnet');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Forms`
+--
+
+CREATE TABLE IF NOT EXISTS `Forms` (
+  `FormID` int(11) NOT NULL AUTO_INCREMENT,
+  `Org_Tag` varchar(15) NOT NULL,
+  `Email` varchar(320) NOT NULL,
+  `Form_Name` text NOT NULL,
+  `Form_Data` text NOT NULL,
+  `Completed` enum('Complete','Incomplete') NOT NULL,
+  PRIMARY KEY (`FormID`),
+  KEY `OrgID` (`Org_Tag`),
+  KEY `Email` (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Organizations`
+--
+
+CREATE TABLE IF NOT EXISTS `Organizations` (
+  `Org_Tag` varchar(15) NOT NULL,
+  `Org_Name` text NOT NULL,
+  `About_Org` text,
+  PRIMARY KEY (`Org_Tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Organizations`
+--
+
+INSERT INTO `Organizations` (`Org_Tag`, `Org_Name`, `About_Org`) VALUES
+('flixnet', 'FlixNet', 'Watch flix on the net!'),
+('TestOrg1', 'Test Org 1', 'Test Org 1'),
+('testorg2', 'test org 2', 'testorg2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE IF NOT EXISTS `Users` (
+  `First_Name` text,
+  `Middle_Name` text,
+  `Last_Name` text,
+  `Email` varchar(320) NOT NULL,
+  `Password` binary(64) NOT NULL,
+  `Phone` text,
+  `DoB` text,
+  `Address` text,
+  `Zip` text,
+  PRIMARY KEY (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`First_Name`, `Middle_Name`, `Last_Name`, `Email`, `Password`, `Phone`, `DoB`, `Address`, `Zip`) VALUES
+(NULL, NULL, NULL, 'movies@flix.net', 0x661ed93358949f1e73c0ac68e311e78e04bf002a8871998f822a55449fd808a9cef839f103d364d3133cfa29c80d37c4516d6cb1df90e2e3d3ddcec363f56def, NULL, NULL, NULL, NULL),
+('First', 'Middle', 'Last', 'testuser1@test.com', 0x9360f21bae149711fa6cfd7475bbb18c5c39a3ebac0cd7db6d336a2492b126758d04309b689d403bfb108d1138348396cff7c0df25191b8e895e022ba2a62ed7, '123-456-7890', '1-2-3', '123 st', '12345'),
+('Firstname', 'Middlename', 'Lastname', 'testuser2@test.com', 0xa31ead92e057a36f331798ad3e35377476289498c203566f3b733094e2088d44ce114ec8bb98ace36b71b8ca5b0c805ffffb9219eb25511a08847ab140497ed7, '098-765-4321', '4-5-06', '456 s 789th st', '56789'),
+(NULL, NULL, NULL, 'testuser3@test.com', 0x4428d4a0a4013efb5995051fb36888c87f14b3362174817e855e16a9cd7e49fdf8bfd53ec29bcc5b7abd64bf83290a04d9c36415043a730a695109ce5634924e, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `User_Org`
+--
+
+CREATE TABLE IF NOT EXISTS `User_Org` (
+  `Email` varchar(320) NOT NULL,
+  `Org_Tag` varchar(15) NOT NULL,
+  UNIQUE KEY `Email` (`Email`,`Org_Tag`),
+  KEY `UserID` (`Email`),
+  KEY `Org_Tag` (`Org_Tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `User_Org`
+--
+
+INSERT INTO `User_Org` (`Email`, `Org_Tag`) VALUES
+('testuser2@test.com', 'TestOrg1'),
+('testuser3@test.com', 'TestOrg1');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Admin_Org`
+--
+ALTER TABLE `Admin_Org`
+  ADD CONSTRAINT `Admin_Org_ibfk_3` FOREIGN KEY (`Email`) REFERENCES `Users` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Admin_Org_ibfk_4` FOREIGN KEY (`Org_Tag`) REFERENCES `Organizations` (`Org_Tag`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `Assigned_Forms`
+--
+ALTER TABLE `Assigned_Forms`
+  ADD CONSTRAINT `Assigned_Forms_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `Users` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Assigned_Forms_ibfk_2` FOREIGN KEY (`Blank_Form_ID`) REFERENCES `Blank_Forms` (`Blank_Form_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `Blank_Forms`
+--
+ALTER TABLE `Blank_Forms`
+  ADD CONSTRAINT `Blank_Forms_ibfk_1` FOREIGN KEY (`Org_Tag`) REFERENCES `Organizations` (`Org_Tag`);
+
+--
+-- Constraints for table `Forms`
+--
+ALTER TABLE `Forms`
+  ADD CONSTRAINT `Forms_ibfk_1` FOREIGN KEY (`Org_Tag`) REFERENCES `Organizations` (`Org_Tag`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Forms_ibfk_2` FOREIGN KEY (`Email`) REFERENCES `Users` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `User_Org`
+--
+ALTER TABLE `User_Org`
+  ADD CONSTRAINT `User_Org_ibfk_3` FOREIGN KEY (`Email`) REFERENCES `Users` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `User_Org_ibfk_4` FOREIGN KEY (`Org_Tag`) REFERENCES `Organizations` (`Org_Tag`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -32,6 +32,10 @@ module.exports = function dispatch(req, res, nextHandle) {
         return
     }
 
-    return table[endpoint](req, res)
+    try {
+        return table[endpoint](req, res)
+    } catch (e) {
+        res.status(500).json(e)
+    }
 
 }
