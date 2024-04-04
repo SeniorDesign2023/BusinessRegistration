@@ -71,7 +71,7 @@ export default function MainPage({orgName, orgRole, orgTag}) {
     const navigateToCreateForm = () => {
         router.push({
             pathname: '/createform',
-            query: { org: selectedOrgName, role: selectedOrgRole },
+            query: { org: selectedOrgTag, role: selectedOrgRole },
         });
     };
 

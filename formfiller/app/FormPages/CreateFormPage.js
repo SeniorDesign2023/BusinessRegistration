@@ -26,7 +26,7 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
         let res = await post("createform", {
             formName,
             json,
-            org: orgTag
+            org: router.query.org
         })
         router.push({
             pathname: '/mainpage',
