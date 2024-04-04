@@ -25,7 +25,7 @@ export default function AdminMainPage({name}) {
     const fetchMembers = async () => {
         const { tag } = router.query;
         try {
-            const response = await fetch(`/get?endpoint=/fetchmembers&orgName=${tag}`);
+            const response = await fetch(`/get?endpoint=fetchmembers&orgName=${tag}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch members');
             }
@@ -41,7 +41,7 @@ export default function AdminMainPage({name}) {
         let { tag } = router.query;
         if(tag == undefined) return;
         try {
-            const response = await fetch(`/get?endpoint=/fetchadmins&orgName=${tag}`);
+            const response = await fetch(`/get?endpoint=fetchadmins&orgName=${tag}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch admins');
             }
@@ -88,7 +88,7 @@ export default function AdminMainPage({name}) {
     const navigateToAdminManageForm = () => {
         router.push({
             pathname: '/adminmanageform',
-            query: { org: name},
+            query: { org: name, tag },
         });
     };
 
