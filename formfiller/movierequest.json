@@ -1,0 +1,23 @@
+{
+	"schema": {	
+		"type": "object",
+		"properties": {
+			"Title": {
+				"type": "string",
+				"description": "Title of the movie"
+			},
+			"Description": {
+				"type": "string",
+				"description": "Brief description of the movie"
+			},
+			"Studio": {
+				"type": "string",
+				"description": "Studio which produced the movie"
+			},
+			"Year": {
+				"type": "integer",
+				"description": "Year the movie was released"
+			}
+		}
+	}
+}

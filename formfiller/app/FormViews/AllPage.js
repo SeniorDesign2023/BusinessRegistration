@@ -9,12 +9,13 @@ export default function AllPage({organization}) {
     useEffect(() => {
 
         get("fetchorgforms", {
-            org: organization
+            org: organization,
+            mode: "all"
         }).then(res => {
             setForms(res.data)
         }, [])
 
-    }, [])
+    }, [organization])
 
     return (
         <div>

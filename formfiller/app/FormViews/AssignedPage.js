@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import FormIndividual from './FormIndividual';
+import { get } from "@/lib/http"
 
 
 export default function AssignedPage({organization}) {
+    const [forms, setForms] = useState([])
+
+    useEffect(() => {
+
+        get("fetchorgforms", {
+            org: organization,
+            mode: "assigned"
+        }).then(res => {
+            setForms(res.data)
+        }, [])
+
+    }, [organization])
+
     return (
         <div>
-            <FormIndividual name ={organization + " form 1"}/>
-            <FormIndividual name ={organization + " form 2"}/>
-            <FormIndividual name ={organization + " form 3"}/>
-            <FormIndividual name ={organization + " form 4"}/>
-            <FormIndividual name ={organization + " form 5"}/>
-            <FormIndividual name ={organization + " form 6"}/>
-
-           
+            {forms.map(form => (
+                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID}/>
+            ))}
         </div>
     );
 }
