@@ -27,6 +27,9 @@ export default function SearchOrganization({closeSearch}) {
         // if (res.data.response) {
         //     setJoined(true);
         //     setErrorMessage('');
+        //     sleep(1)
+        //     exit();
+        //  
         // } else {
         //     setJoined(false);
         //     setErrorMessage('Could not join organization');
@@ -62,7 +65,7 @@ export default function SearchOrganization({closeSearch}) {
 
         <div>
            {errorMessage && <h1>{errorMessage}</h1>}
-           {joined && <h1>Joined organization {organization}</h1>}
+           {joined && <div className='joined'>Joined organization {organization}</div>}
         </div>
         <div className= 'create' onClick={navigateToCreateOrgnization}> Create Organization</div>
         </div>
