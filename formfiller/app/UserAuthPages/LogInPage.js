@@ -10,6 +10,7 @@ import { post } from "@/lib/http"
 export default function LogInPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
 
     const handleSubmit = async (event) => {
@@ -27,7 +28,7 @@ export default function LogInPage() {
 
             router.push("/mainpage");
         } else {
-
+            setErrorMessage(res.data.message);
             setEmail('');
             setPassword('');
 
@@ -69,6 +70,7 @@ export default function LogInPage() {
                 />
             </label>
             <input type="submit" value="Log In" className='submit' />
+            {errorMessage && <div className='error'>{errorMessage}</div>}
         </form>
         </div>
     );

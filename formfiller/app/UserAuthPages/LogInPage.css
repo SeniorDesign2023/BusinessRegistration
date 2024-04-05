@@ -79,3 +79,18 @@ form{
     /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5); Add box shadow when button is clicked */
     border: 2px solid white;
 }
+
+.error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 29%; 
+    margin-top: 20px;
+    width: max-content;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+
+    color: red;
+}

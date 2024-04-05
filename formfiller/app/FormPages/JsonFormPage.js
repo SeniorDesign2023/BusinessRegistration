@@ -44,7 +44,7 @@ export default function JsonFormPage({form}) {
             />
             <div className='buttons'>
                 <button type="button" onClick={() => postData(false)}>Submit</button>
-                <button type="button">Save Draft</button>
+                <button type="button" onClick={() => postData(true)}>Save Draft</button>
             </div>
 
         </div>

@@ -31,14 +31,12 @@ export default function SearchOrganization({closeSearch}) {
         if (res.data.success) {
             setJoined(true);
             setErrorMessage(res.data.message);
-            //sleep(1)
-            //exit();         
+                  
         } else {
             setJoined(false);
             setErrorMessage(res.data.message);
             setOrganization(''); // Reset organization to blank
-            //sleep(3);
-            //setErrorMessage('');
+         
         }
     };
 
