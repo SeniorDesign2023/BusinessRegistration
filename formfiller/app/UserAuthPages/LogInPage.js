@@ -22,11 +22,12 @@ export default function LogInPage() {
             password
         })
 
+            console.log(res.data.message);
         if(res.data.success) {
-            console.log("logging in");
+
             router.push("/mainpage");
         } else {
-            console.log("incorrect login");
+
             setEmail('');
             setPassword('');
 
