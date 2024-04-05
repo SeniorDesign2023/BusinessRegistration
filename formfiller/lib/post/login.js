@@ -8,9 +8,11 @@ module.exports = async function login(req, res) {
 
     if (await checkLogin(req.body.email, req.body.password)) {
         await session.makeCookie(req, res, req.body.email)
-        res.json({redirect: "/mainpage"})
+        //res.json({redirect: "/mainpage"})
+        res.json({success: true, message: "Logging you in..."})
     } else
-        res.json({redirect: "/login"})
+        res.json({success: false, message: "Incorrect Username or Password"})
+        //res.json({redirect: "/login"})
 
 }
 

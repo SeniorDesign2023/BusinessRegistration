@@ -6,6 +6,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 
 
+
 import { post } from "@/lib/http"
 
 export default function SearchOrganization({closeSearch}) {
@@ -17,24 +18,28 @@ export default function SearchOrganization({closeSearch}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        console.log('search button')
+
         let res = await post("searchorg", {
             organization
         })
    
         console.log(res.data);
+
         setOrganization('');
       //  based on the res.data response when that is figured out
-        // if (res.data.response) {
-        //     setJoined(true);
-        //     setErrorMessage('');
-        //     sleep(1)
-        //     exit();
-         
-        // } else {
-        //     setJoined(false);
-        //     setErrorMessage('Could not join organization');
-        //     setOrganization(''); // Reset organization to blank
-        // }
+        if (res.data.success) {
+            setJoined(true);
+            setErrorMessage(res.data.message);
+            //sleep(1)
+            //exit();         
+        } else {
+            setJoined(false);
+            setErrorMessage(res.data.message);
+            setOrganization(''); // Reset organization to blank
+            //sleep(3);
+            //setErrorMessage('');
+        }
     };
 
     const exit = () => {

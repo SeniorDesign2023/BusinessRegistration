@@ -21,7 +21,23 @@ export default function LogInPage() {
             email,
             password
         })
-        router.push(res.data.redirect)
+
+        if(res.data.success) {
+            console.log("logging in");
+            router.push("/mainpage");
+        } else {
+            console.log("incorrect login");
+            setEmail('');
+            setPassword('');
+
+            //display incorrect username and password error(res.data.message)
+
+        }
+
+
+
+
+        //router.push(res.data.redirect)
         //redirect({route: res.data.redirect})
         //redirect(res.data.redirect)
     };
