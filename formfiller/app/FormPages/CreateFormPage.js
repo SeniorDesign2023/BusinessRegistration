@@ -15,6 +15,7 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
     //     orgRole = 'Normal'
     // }
 
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
     
     const [formName, setFormName] = useState('');
@@ -27,16 +28,22 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
             const obj = JSON.parse(json)
             
             if (!obj) {
+              
+                setErrorMessage("Entry not a JSON object");
                 console.log("Entry not a JSON object")
                 return
             }
 
             if (!obj.schema) {
+              
+                setErrorMessage("Entry does not contain a schema object");
                 console.log("Entry does not contain a schema object")
                 return
             }
 
         } catch (_) {
+           
+            setErrorMessage("Entry not valid JSON");
             console.log("Entry not valid JSON")
             return
         }
@@ -102,6 +109,7 @@ export default function CreateFormPage({orgName, orgRole, orgTag}) {
     
 
             <input type="submit" value="Generate form" className='submit' />
+            {errorMessage && <div className='error'>{errorMessage}</div>}
         </form>
         </div>
     );
