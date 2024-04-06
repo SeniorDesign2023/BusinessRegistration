@@ -8,14 +8,15 @@ module.exports = async function signup(req, res) {
 
     var records = await database.query("SELECT * FROM Users WHERE Email = ?", [req.body.email])
     if (records.length > 0) {
-        res.json({redirect: "/signup"})
+        //Username already taken 
+        res.json({redirect: "/signup", success: false, message: "There is already an account associated with this email"})
         return
     }
 
     await createAccount(req.body.email, req.body.password)
     await session.makeCookie(req, res, req.body.email)
     
-    res.json({redirect: "/mainpage"})
+    res.json({redirect: "/mainpage", success: true, message: "Your account has been created"})
 
 }
 

@@ -19,6 +19,11 @@ export default function SignUpPage() {
             email,
             password
         })
+        console.log(res.data.success)
+        console.log(res.data.message)
+
+        //Display an error message if success is false
+
         router.push(res.data.redirect)
     };
 
