@@ -3,6 +3,7 @@ import { BiSolidReport } from "react-icons/bi";
 import "./AdminFormIndividual.css"
 import { MdOutlineAssignmentInd } from "react-icons/md";
 import { useRouter } from 'next/router';
+import { GoDot } from "react-icons/go";
 
 export default function AdminFormIndivdual({name, orgName, orgTag}) {
     const router = useRouter();
@@ -24,6 +25,7 @@ export default function AdminFormIndivdual({name, orgName, orgTag}) {
 
     return (
         <div className='individual'>
+            <GoDot className ="dot"/>
             <h2> {name} </h2>
             <div onClick={navigateToAssignForms}> <MdOutlineAssignmentInd className='assigned'/></div>
             <div onClick={navigateToFormResponses}> <BiSolidReport className='responses'  /></div>
