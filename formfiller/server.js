@@ -56,7 +56,7 @@ nextApp.prepare().then(async () => {
 		res.form.tag = result[0].Org_Tag
 
 		if (req.session.formDataCache) {
-			res.form.data = req.session.formDataCache.find(ob => ob.Blank_Form_ID === id)
+			res.form.data = req.session.formDataCache.find(ob => ob.Blank_Form_ID === id) || null
 		} else {
 			var userRecord = (await database.query("SELECT * FROM Users WHERE Email = ?", [req.session.user.Email]))[0]
 			var autofill = {}
@@ -74,7 +74,7 @@ nextApp.prepare().then(async () => {
 
 			console.log(autofill)
 
-			res.form.data = autofill
+			res.form.data = autofill || null
 		}
 
 		console.log("  Rendering /form")
