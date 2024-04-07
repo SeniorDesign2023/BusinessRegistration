@@ -23,6 +23,7 @@ export default function JsonFormPage({form}) {
             data,
             org: form.tag,
             isDraft,
+            id: form.id
 
         })
 
@@ -30,23 +31,36 @@ export default function JsonFormPage({form}) {
 
     };
 
-    return(
+    if (form)
+        return(
+            <div>
+                <h3 onClick={navigateToMainPage}> exit </h3>
+                {/*<h1> This page displays a sample form</h1>*/}
+                <JsonForms 
+                    schema={form.schema}
+                    
+                    renderers={materialRenderers}
+                    cells={materialCells}
+                    data={form.data}
+                    onChange={
+                        ({errors, data}) => setData(data)
+                    }
+                />
+                <div className='buttons'>
+                    <button type="button" onClick={() => postData(false)}>Submit</button>
+                    <button type="button" onClick={() => postData(true)}>Save Draft</button>
+                </div>
+
+            </div>
+        )
+
+    return (
         <div>
             <h3 onClick={navigateToMainPage}> exit </h3>
-            {/*<h1> This page displays a sample form</h1>*/}
-            <JsonForms 
-                schema={form.schema}
-                renderers={materialRenderers}
-                cells={materialCells}
-                onChange={
-                    ({errors, data}) => setData(data)
-                }
-            />
-            <div className='buttons'>
-                <button type="button" onClick={() => postData(false)}>Submit</button>
-                <button type="button" onClick={() => postData(true)}>Save Draft</button>
-            </div>
-
+            <p> Please refresh page for form to load. </p>
         </div>
     )
 }
+
+//uischema={form.uischema || null}
+//

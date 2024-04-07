@@ -36,75 +36,52 @@ nextApp.prepare().then(async () => {
 	server.use(morgan('dev'));
 	
 	server.get("/form", async (req, res) => {
-		if (!req.query.id) 
+		console.log("  Got /form request")
+
+		id = req.query.id
+
+		if (!id) 
 			return res.status(404).send()
+
+		if (!req.session || !req.session.user)
+			return res.status(401).send()
 
 		var result = await database.query("SELECT * FROM Blank_Forms WHERE Blank_Form_ID = ?", [req.query.id])
 		if (result.count == 0)
 			return res.status(404).send()
 
-		//console.log(util.inspect(result[0]))
-
 		res.form = JSON.parse(result[0].Blank_Form_Data.toString())
 		res.form.name = result[0].Blank_Form_Name
-		res.form.id = req.query.id
+		res.form.id = id
 		res.form.tag = result[0].Org_Tag
+
+		if (req.session.formDataCache) {
+			res.form.data = req.session.formDataCache.find(ob => ob.Blank_Form_ID === id)
+		} else {
+			var userRecord = (await database.query("SELECT * FROM Users WHERE Email = ?", [req.session.user.Email]))[0]
+			var autofill = {}
+
+			for ([entry, value] of Object.entries(userRecord)) {
+				
+				if (entry === "Password")
+					continue
+
+				if (value) {
+					autofill[entry] = value
+				}
+
+			}
+
+			console.log(autofill)
+
+			res.form.data = autofill
+		}
+
+		console.log("  Rendering /form")
 		return nextApp.render(req, res, "/form", req.query)
 	})
 
-	server.get("/get", async (req, res) => {
-		getDispatch(req, res, handle)
-
-		// if (req.query.endpoint === "/fetchprofile") {
-		// 	console.log("fetchprofile")
-		// 	if (!req.session || !req.session.user || !req.session.user['Email']) {
-		// 		return res.status(404).json({ error: "User profile not found" });
-		// 	}
-	
-		// 	const currentUserEmail = req.session.user['Email'];
-		// 	console.log(currentUserEmail);
-
-		// 	profile = await database.query("SELECT * FROM Users WHERE Email = ?", [currentUserEmail])
-
-		// 	return res.json(profile[0]);
-		// } else if (req.query.endpoint === "/fetchorganizations") {
-		// 	console.log("fetchorganizations")
-		// 	if (!req.session || !req.session.user || !req.session.user['Email']) {
-		// 		return res.status(404).json({ error: "User profile not found" });
-		// 	}
-			
-		// 	const currentUserEmail = req.session.user['Email'];
-		// 	console.log(currentUserEmail);
-
-		// 	Orgs = await database.query("SELECT Organizations.*, 'Admin' AS Role FROM Organizations JOIN Admin_Org ON Organizations.Org_Tag = Admin_Org.Org_Tag WHERE Admin_Org.Email = ? UNION SELECT Organizations.*, 'Normal' AS Role FROM Organizations JOIN User_Org ON Organizations.Org_Tag = User_Org.Org_Tag WHERE User_Org.Email = ?;", [currentUserEmail, currentUserEmail])
-		// 	console.log(Orgs);
-		// 	return res.json(Orgs);
-
-		// } else if (req.query.endpoint === "/fetchmembers") {
-			
-			
-		// 	const orgName = req.query.orgName; 
-		// 	if (!orgName) {
-		// 		return res.status(400).json({ error: "Organization name is required" });
-		// 	}
-			
-		// 	const members = await database.query("SELECT Email FROM User_Org WHERE Org_Tag = ?", [orgName]);
-		// 	console.log(members)
-		// 	return res.json(members);
-		// } else if (req.query.endpoint === "/fetchadmins") {
-		// 	//.log('fetch admins')
-		// 	const orgName = req.query.orgName; 
-		// 	if (!orgName) {
-		// 		return res.status(400).json({ error: "Organization name is required" });
-		// 	}
-		// 	const admins = await database.query("SELECT Email FROM Admin_Org WHERE Org_Tag = ?", [orgName]);
-		// 	console.log(admins)
-		// 	return res.json(admins);
-		// } else {
-		// 	return res.status(404).json({ error: "Invalid endpoint" });
-		// }
-	});
-
+	server.get("/get", async (req, res) => getDispatch(req, res, handle));
 	server.post("/post", (req, res) => postDispatch(req, res, handle))
 
 	server.get('*', (req, res) => handle(req, res))

@@ -18,23 +18,31 @@ module.exports = async function fetchOrgForms(req, res) {
     
     case "assigned":
         
-        var assigned = await database.query("SELECT Blank_Form_ID FROM Assigned_Forms WHERE Email = ?", [user])
-        console.log(assigned)
+        const assigned = await database.query("SELECT Blank_Form_ID FROM Assigned_Forms WHERE Email = ?", [user])
 
+        req.session.formDataCache = undefined
         res.json(allForms.filter(form => assigned.find(assign => assign.Blank_Form_ID === form.Blank_Form_ID)))
         break
 
     case "submitted":
         
-        res.json(allForms)
+        const submitted = await database.query("SELECT Blank_Form_ID, Form_Data, Completed FROM Forms WHERE Email = ?", [user])
+
+        req.session.formDataCache = submitted
+        res.json(allForms.filter(form => submitted.find(submit => submit.Blank_Form_ID === form.Blank_Form_ID && submit.Completed === "Complete")))
         break
     
     case "draft":
-        res.json(allForms)
+
+        const drafts = await database.query("SELECT Blank_Form_ID, Form_Data, Completed FROM Forms WHERE Email = ?", [user])
+
+        req.session.formDataCache = drafts
+        res.json(allForms.filter(form => drafts.find(draft => draft.Blank_Form_ID === form.Blank_Form_ID && draft.Completed === "Incomplete")))
         break
 
     case "all":
     default:
+        req.session.formDataCache = undefined
         res.json(allForms)
         break
 

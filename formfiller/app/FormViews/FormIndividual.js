@@ -7,7 +7,8 @@ import { IoDocumentOutline } from "react-icons/io5";
 
 export default function FormIndividual({name, id}) {
     const router = useRouter();
-    const navigateToJsonFormPage = () => {
+    const navigateToJsonFormPage = event => {
+        event.preventDefault()
         router.push({
             pathname: '/form',
             query: {
