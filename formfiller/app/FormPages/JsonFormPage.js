@@ -13,6 +13,8 @@ export default function JsonFormPage({form}) {
         router.push('/mainpage');
     };
 
+    console.log(form);
+
     const [data, setData] = useState()
 
     async function postData(isDraft) {
@@ -23,7 +25,9 @@ export default function JsonFormPage({form}) {
             data,
             org: form.tag,
             isDraft,
-            id: form.id
+            id: form.id,
+            fid: form.fid || null,
+            mode: router.query.mode
 
         })
 
@@ -46,10 +50,12 @@ export default function JsonFormPage({form}) {
                         ({errors, data}) => setData(data)
                     }
                 />
+                {router.query.mode !== "submitted" && 
                 <div className='buttons'>
-                    <button type="button" onClick={() => postData(false)}>Submit</button>
-                    <button type="button" onClick={() => postData(true)}>Save Draft</button>
+                    && <button type="button" onClick={() => postData(false)}>Submit</button>
+                    && <button type="button" onClick={() => postData(true)}>Save Draft</button>
                 </div>
+                }
 
             </div>
         )
@@ -61,6 +67,4 @@ export default function JsonFormPage({form}) {
         </div>
     )
 }
-
 //uischema={form.uischema || null}
-//

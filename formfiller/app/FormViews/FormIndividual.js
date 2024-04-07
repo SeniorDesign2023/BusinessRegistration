@@ -4,15 +4,16 @@ import { useRouter } from 'next/router';
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { IoDocumentOutline } from "react-icons/io5";
 
-
-export default function FormIndividual({name, id}) {
+export default function FormIndividual({name, id, fid, mode}) {
     const router = useRouter();
     const navigateToJsonFormPage = event => {
         event.preventDefault()
         router.push({
             pathname: '/form',
             query: {
-                id
+                id,
+                mode,
+                fid,
             }
         });
     };

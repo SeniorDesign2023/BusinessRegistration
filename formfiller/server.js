@@ -39,6 +39,7 @@ nextApp.prepare().then(async () => {
 		console.log("  Got /form request")
 
 		id = req.query.id
+		fid = req.query.fid
 
 		if (!id) 
 			return res.status(404).send()
@@ -53,10 +54,18 @@ nextApp.prepare().then(async () => {
 		res.form = JSON.parse(result[0].Blank_Form_Data.toString())
 		res.form.name = result[0].Blank_Form_Name
 		res.form.id = id
+		res.form.fid = fid
 		res.form.tag = result[0].Org_Tag
 
+		console.log(fid)
+		console.log(req.session.formDataCache)
+
 		if (req.session.formDataCache) {
-			res.form.data = req.session.formDataCache.find(ob => ob.Blank_Form_ID === id) || null
+			res.form.data = req.session.formDataCache.find(rec => rec.FormID == fid).Form_Data
+			if (res.form.data)
+				res.form.data = JSON.parse(res.form.data)
+			else
+				res.form.data = null
 		} else {
 			var userRecord = (await database.query("SELECT * FROM Users WHERE Email = ?", [req.session.user.Email]))[0]
 			var autofill = {}

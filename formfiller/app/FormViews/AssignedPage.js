@@ -20,7 +20,7 @@ export default function AssignedPage({organization}) {
     return (
         <div>
             {forms.map(form => (
-                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID}/>
+                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID} mode="normal"/>
             ))}
         </div>
     );

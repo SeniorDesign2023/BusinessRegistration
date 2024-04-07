@@ -20,7 +20,7 @@ export default function Draft({organization}) {
     return (
         <div>
             {forms.map(form => (
-                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID}/>
+                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID} fid={form.fid} mode="draft"/>
             ))}
         </div>
     );

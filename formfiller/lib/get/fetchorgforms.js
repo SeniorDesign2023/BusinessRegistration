@@ -26,18 +26,43 @@ module.exports = async function fetchOrgForms(req, res) {
 
     case "submitted":
         
-        const submitted = await database.query("SELECT Blank_Form_ID, Form_Data, Completed FROM Forms WHERE Email = ?", [user])
-
+        const submitted = await database.query("SELECT * FROM Forms WHERE Email = ? AND Completed = ?", [user, "Complete"])
         req.session.formDataCache = submitted
-        res.json(allForms.filter(form => submitted.find(submit => submit.Blank_Form_ID === form.Blank_Form_ID && submit.Completed === "Complete")))
+
+        const srelevant = allForms.filter(form => submitted.find(submit => submit.Blank_Form_ID === form.Blank_Form_ID && submit.Completed === "Complete"))
+        var sarr = []
+
+        //console.log(submitted)
+
+        for (var i = 0; i < submitted.length; i++) {
+            var form = submitted[i]
+            //console.log(form)
+            var rform = {...srelevant.find(rel => rel.Blank_Form_ID === form.Blank_Form_ID)} //so *this* is what it takes to make rform not change the other values of the array when pushed?
+            rform.fid = form.FormID
+            sarr.push(rform)
+        }
+
+        //console.log(sarr)
+
+        res.json(sarr)
         break
     
     case "draft":
 
-        const drafts = await database.query("SELECT Blank_Form_ID, Form_Data, Completed FROM Forms WHERE Email = ?", [user])
-
+        const drafts = await database.query("SELECT * FROM Forms WHERE Email = ? AND Completed = ?", [user, "Incomplete"])
         req.session.formDataCache = drafts
-        res.json(allForms.filter(form => drafts.find(draft => draft.Blank_Form_ID === form.Blank_Form_ID && draft.Completed === "Incomplete")))
+
+        const drelevant = allForms.filter(form => drafts.find(draft => draft.Blank_Form_ID === form.Blank_Form_ID))
+        var darr = []
+
+        for (var i = 0; i < drafts.length; i++) {
+            var form = drafts[i]
+            var rform = {...drelevant.find(rel => rel.Blank_Form_ID === form.Blank_Form_ID)}
+            rform.fid = form.FormID
+            darr.push(rform)
+        }
+
+        res.json(darr)
         break
 
     case "all":

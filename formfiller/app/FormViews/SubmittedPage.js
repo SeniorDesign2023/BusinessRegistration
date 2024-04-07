@@ -12,6 +12,7 @@ export default function CreatedPage({organization}) {
             org: organization,
             mode: "submitted"
         }).then(res => {
+            console.log(res.data)
             setForms(res.data)
         }, [])
 
@@ -20,7 +21,7 @@ export default function CreatedPage({organization}) {
     return (
         <div>
             {forms.map(form => (
-                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID}/>
+                <FormIndividual name={form.Blank_Form_Name} id={form.Blank_Form_ID} fid={form.fid} mode="submitted"/>
             ))}
         </div>
     );
