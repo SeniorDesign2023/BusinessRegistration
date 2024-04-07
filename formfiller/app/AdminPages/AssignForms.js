@@ -16,17 +16,36 @@ export default function AssignForm({formName, orgName, id}) {
             return;
         }
 
+        setlist()
+        
+    }, [router.query]);
+
+    const setlist = async () => {
         get("fetchassign", {
             formID: id
         }).then(response => {
             console.log(response);
             setAssignedMembers(response.data);
         });
-        
-    }, [router.query]);
+    }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        let res = await post("assign2form", {
+            member,
+            id
+        })
+
+        if(res.data.success == true) {
+            setlist();
+            setMember('');
+        }
+        else {
+            console.log(res.data.message);
+        }
+
+
     };
 
     const exit = () => {
