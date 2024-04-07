@@ -41,7 +41,7 @@ export default function AdminManageForms({orgName}) {
             <h2 className='top-text' > Manage Forms</h2>
             </div>
             <div className='forms'>
-            {forms.map(form => (<AdminFormIndivdual name={form.Blank_Form_Name} orgName={name} orgTag={tag} />))}
+            {forms.map(form => (<AdminFormIndivdual name={form.Blank_Form_Name} id={form.Blank_Form_ID} orgName={name} orgTag={tag} />))}
             </div>
         </div>
     )
