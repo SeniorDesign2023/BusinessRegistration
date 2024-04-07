@@ -8,6 +8,7 @@ export default function SignUpPage() {
     const [fullname, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
 
     const handleSubmit = async (event) => {
@@ -20,11 +21,17 @@ export default function SignUpPage() {
             password
         })
         console.log(res.data.success)
+
+        if(res.data.success) {
+            router.push(res.data.redirect)
+        } else {
+            setErrorMessage(res.data.message);
+            setEmail('');
+            setPassword('');
+        }
         console.log(res.data.message)
 
-        //Display an error message if success is false
-
-        router.push(res.data.redirect)
+  
     };
 
     return (
@@ -60,6 +67,7 @@ export default function SignUpPage() {
                 />
             </label>
             <input type="submit" value="Sign Up" className='submit'/>
+            {errorMessage && <div className='error'>{errorMessage}</div>}
         </form>
         </div>
     );
