@@ -38,7 +38,7 @@ export default function AdminManageForms({orgName}) {
         <div>
             <h4 onClick={exit}> exit </h4>
             <div className='forms'>
-            {forms.map(form => (<AdminFormIndivdual name={form.Blank_Form_Name} orgName={name} orgTag={tag} />))}
+            {forms.map(form => (<AdminFormIndivdual name={form.Blank_Form_Name} id={form.Blank_Form_ID} orgName={name} orgTag={tag} />))}
             </div>
         </div>
     )

@@ -4,13 +4,13 @@ import "./AdminFormIndividual.css"
 import { MdOutlineAssignmentInd } from "react-icons/md";
 import { useRouter } from 'next/router';
 
-export default function AdminFormIndivdual({name, orgName, orgTag}) {
+export default function AdminFormIndivdual({name, id, orgName, orgTag}) {
     const router = useRouter();
 
     const navigateToFormResponses = () => {
         router.push({
             pathname: '/formresponse',
-            query: { formName: name, org: orgName, tag: orgTag},
+            query: { formName: name, formID: id, org: orgName, tag: orgTag},
         });
    
     };
@@ -18,7 +18,7 @@ export default function AdminFormIndivdual({name, orgName, orgTag}) {
     const navigateToAssignForms = () => {
         router.push({
             pathname: '/assignform',
-            query: { formName: name, org: orgName, tag: orgTag},
+            query: { formName: name, formID: id, org: orgName, tag: orgTag},
         });
     };
 

@@ -5,6 +5,7 @@ const fetchorganizations = require("./get/fetchorganizations")
 const fetchorgforms = require("./get/fetchorgforms")
 const fetchprofile = require("./get/fetchprofile")
 const validateuser = require("./get/validateuser")
+const fetchassign = require("./get/fetchassign")
 
 const table = {
     dbquery,
@@ -14,6 +15,7 @@ const table = {
     fetchorgforms,
     fetchprofile,
     validateuser,
+    fetchassign
 }
 
 module.exports = function dispatch(req, res, nextHandle) {

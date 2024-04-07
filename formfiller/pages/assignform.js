@@ -3,6 +3,7 @@ import AssignForms from '../app/AdminPages/AssignForms';
 
 export default function assignform() {
     const router = useRouter();
-    const {formName, org} = router.query;
-    return <AssignForms formName = {formName} orgName = {org}/>;
+    const {formName, org, formID} = router.query;
+    //console.log("assignform " + formID);
+    return <AssignForms formName = {formName} orgName = {org} id = {formID}/>;
 }
