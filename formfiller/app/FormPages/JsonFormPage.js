@@ -52,8 +52,8 @@ export default function JsonFormPage({form}) {
                 />
                 {router.query.mode !== "submitted" && 
                 <div className='buttons'>
-                    && <button type="button" onClick={() => postData(false)}>Submit</button>
-                    && <button type="button" onClick={() => postData(true)}>Save Draft</button>
+                    <button type="button" onClick={() => postData(false)}>Submit</button>
+                    <button type="button" onClick={() => postData(true)}>Save Draft</button>
                 </div>
                 }
 
