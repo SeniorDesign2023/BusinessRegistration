@@ -50,10 +50,13 @@ export default function AssignForm({formName, orgName, id}) {
     };
 
     const exit = () => {
+        router.back();
+        /*
         router.push({
             pathname: '/adminmanageform',
             query: { org: orgName},
         });
+        */
     };
 
     return(
