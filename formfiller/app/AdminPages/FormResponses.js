@@ -11,10 +11,13 @@ export default function FormResponses({formName, formID, orgName, orgTag}) {
     const [data, setData] = useState([])
 
     const exit = () => {
+        router.back();
+        /*
         router.push({
             pathname: '/adminmanageform',
             query: {formName, formID, org: orgName, tag: orgTag},
         });
+        */
     };
 
 

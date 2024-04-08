@@ -15,10 +15,14 @@ export default function AdminManageForms({orgName}) {
     const [forms, setForms] = useState([])
 
     const exit = () => {
+
+        router.back()
+        /*
         router.push({
             pathname: '/adminmainpage',
-            query: { org: name, tag },
+            query: { org: name, tag: tag },
         });
+        */
     };
 
     useEffect(() => {
