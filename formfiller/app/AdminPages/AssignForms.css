@@ -1,20 +1,36 @@
 *{
-    background-color:  #F9FBFF;
+   
     /* font-weight: lighter; */
     font-weight: lighter;
 }
 .top{
+    background-color:  #F9FBFF;
     display: flex;
     gap: 30px;
 }
 .assign-form{
-   
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    border-top-left-radius: none;
     margin-left: 50px;
+    padding: 20px;
+    height: 650px;
 }
 
 .form-name{
     font-weight: bold;
     font-size: 24px;
+}
+.assign-text{
+    display: flex;
+}
+
+.dot{
+    height: 30px;
+    width: 30px;
+    margin-top: 20px;
+    color: rgb(125, 177, 246);
 }
 
 .exit{

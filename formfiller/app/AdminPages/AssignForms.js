@@ -3,6 +3,7 @@ import "./AssignForms.css"
 import { useRouter } from 'next/router';
 
 import { post, get } from "@/lib/http"
+import { GoDot } from "react-icons/go";
 
 
 export default function AssignForm({formName, orgName, id}) {
@@ -59,10 +60,10 @@ export default function AssignForm({formName, orgName, id}) {
         <div>
             <div className='top'>
                 <h4 onClick={exit} className= "exit"> exit</h4>
-                <h4 className='form-name'>{formName}</h4>
+                <h4 className='form-name'>{formName} - Assign form</h4>
             </div>
             <div className='assign-form'>
-                <h2> Assigned </h2>
+                <h2> Assigned Members </h2>
                 <form onSubmit={handleSubmit}>
                     <label >
                         <input className='form-input'
@@ -74,7 +75,10 @@ export default function AssignForm({formName, orgName, id}) {
                     <input type="submit" value="+" className='submit' />
                 </form>
                 {assignedMembers.map((assignedMember, index) => (
-                <h3 key={index}> {assignedMember.Email} </h3>
+                 <div className='assign-text'> 
+                 <GoDot className ="dot"/>
+                 <h2 key={index}>{assignedMember.Email}</h2>
+                 </div>
                 ))}
             </div>
         </div>
