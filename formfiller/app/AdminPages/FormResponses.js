@@ -17,16 +17,7 @@ export default function FormResponses({formName, formID, orgName, orgTag}) {
         });
     };
 
-    /*const text = `{
-        "name": "John Doe",
-        "vegetarian": false,
-        "birthDate": "1985-06-02",
-        "personalData": {
-          "age": 34
-        },
-        "postalCode": "12345",
-        "nationality": "JP"
-}`*/
+
 
     useEffect(() => {
         get("fetchresponses", {formID}).then(response => {
@@ -35,11 +26,13 @@ export default function FormResponses({formName, formID, orgName, orgTag}) {
         });
     }, [formID])
 
- 
+
     return (
         <div>
-            <h4 onClick={exit}> <IoMdArrowBack/> </h4>
-            <h1>{formName}</h1>
+            <div className='top'>
+            <h4 onClick={exit} className="exit"> exit </h4>
+            <h1>{formName} Form Responses</h1>
+            </div>
             <div className='group-container'>
                 {data.map(entry => (
                     <div>
