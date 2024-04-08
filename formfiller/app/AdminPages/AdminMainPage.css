@@ -111,6 +111,7 @@ h2{
 }
 .admin-text{
     display: flex;
+    margin-bottom: -20px;
 }
 
 .manage-icon{

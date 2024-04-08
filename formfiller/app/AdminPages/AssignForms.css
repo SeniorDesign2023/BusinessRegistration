@@ -24,6 +24,7 @@
 }
 .assign-text{
     display: flex;
+    margin-bottom: -10px;
 }
 
 .dot{
