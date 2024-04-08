@@ -1,21 +1,23 @@
 const dbquery = require("./get/dbquery")
 const fetchadmins = require("./get/fetchadmins")
+const fetchassign = require("./get/fetchassign")
 const fetchmembers = require("./get/fetchmembers")
 const fetchorganizations = require("./get/fetchorganizations")
 const fetchorgforms = require("./get/fetchorgforms")
 const fetchprofile = require("./get/fetchprofile")
+const fetchresponses = require("./get/fetchresponses")
 const validateuser = require("./get/validateuser")
-const fetchassign = require("./get/fetchassign")
 
 const table = {
     dbquery,
     fetchadmins,
+    fetchassign,
     fetchmembers,
     fetchorganizations,
     fetchorgforms,
     fetchprofile,
+    fetchresponses,
     validateuser,
-    fetchassign
 }
 
 module.exports = function dispatch(req, res, nextHandle) {
