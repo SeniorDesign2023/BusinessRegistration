@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./AdminMainPage.css"
 import { useRouter } from 'next/router';
 import { IoMenu } from "react-icons/io5";
-
+import { GoDot } from "react-icons/go";
 import { get, post } from "@/lib/http"
 
 export default function AdminMainPage({name}) {
@@ -128,7 +128,10 @@ export default function AdminMainPage({name}) {
                 </form>
                 {/* Render the list of members */}
                 {members.map((member, index) => (
-                    <h2 key={index}>{member.Email}</h2>
+                     <div className='admin-text'> 
+                     <GoDot className ="dot"/>
+                     <h2 key={index}>{member.Email}</h2>
+                     </div>
                 ))}
             </div>
 
@@ -148,7 +151,10 @@ export default function AdminMainPage({name}) {
                  </form>
                  {/* Render the list of admins */}
                 {admins.map((admin, index) => (
+                    <div className='admin-text'> 
+                    <GoDot className ="dot"/>
                     <h2 key={index}>{admin.Email}</h2>
+                    </div>
                 ))}
             </div>
             </div>
