@@ -30,7 +30,7 @@ export default function SearchOrganization({closeSearch}) {
       //  based on the res.data response when that is figured out
         if (res.data.success) {
             setJoined(true);
-            setErrorMessage(res.data.message);
+            // setErrorMessage(res.data.message);
                   
         } else {
             setJoined(false);

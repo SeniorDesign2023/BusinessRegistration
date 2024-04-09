@@ -34,7 +34,7 @@ export default function FormResponses({formName, formID, orgName, orgTag}) {
         <div>
             <div className='top'>
             <h4 onClick={exit} className="exit"> exit </h4>
-            <h1>{formName} Form Responses</h1>
+            <h1>{formName} - Form Responses</h1>
             </div>
             <div className='group-container'>
                 {data.map(entry => (
@@ -49,28 +49,3 @@ export default function FormResponses({formName, formID, orgName, orgTag}) {
         </div>
     );
 }
-
-/*
-<div >
-               
-                <h2>email@adress.com</h2>
-                <div className='json-text'>
-                    <pre>{text}
-                        </pre>
-                </div>
-            </div>
-            <div>
-                <h2>email2@adress.com</h2>
-                <div className='json-text'>
-                    <pre>{text}
-                        </pre>
-                </div>
-            </div>
-            <div>
-                <h2>email3@adress.com</h2>
-                <div className='json-text'>
-                    <pre>{text}
-                        </pre>
-                </div>
-            </div>
-*/

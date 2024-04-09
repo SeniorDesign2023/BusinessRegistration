@@ -38,7 +38,10 @@ export default function JsonFormPage({form}) {
     if (form)
         return(
             <div>
-                <h3 onClick={navigateToMainPage}> exit </h3>
+                 <div className='top'>
+                <h3 onClick={navigateToMainPage} className="exit"> exit </h3>
+                <h2>{form.name}</h2>
+                </div>
                 {/*<h1> This page displays a sample form</h1>*/}
                 <JsonForms 
                     schema={form.schema}

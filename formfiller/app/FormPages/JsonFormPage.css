@@ -13,3 +13,14 @@ button{
     padding: 10px;
 
 }
+
+.top{
+    margin-left:5px;
+    display: flex;
+    gap: 30px;
+}
+
+.exit{
+    margin-top: 25px;
+    font-weight: lighter;
+}
