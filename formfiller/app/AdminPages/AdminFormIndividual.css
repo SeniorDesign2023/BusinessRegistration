@@ -15,18 +15,17 @@
     color: rgb(125, 177, 246);
 }
 
-.assigned{
-    margin-top: 20px;
-    margin-left: 300px;
-    height: 30px;
-    width: 40px;
-   
+.buttons {
+    margin-left: auto; /* Move buttons to the right */
+    display: flex; /* Ensure buttons are in a flex container */
+    align-items: center; /* Align buttons vertically */
 }
 
-.responses{
-    margin-top: 20px;
-    margin-left: 10px;
+.assigned, .responses {
     height: 30px;
     width: 40px;
+}
 
+.responses {
+    margin-left: 10px; /* Add some space between buttons */
 }

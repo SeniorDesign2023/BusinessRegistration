@@ -27,8 +27,10 @@ export default function AdminFormIndivdual({name, id, orgName, orgTag}) {
         <div className='individual'>
             <GoDot className ="dot"/>
             <h2> {name} </h2>
+            <div className='buttons'>
             <div onClick={navigateToAssignForms}> <MdOutlineAssignmentInd className='assigned'/></div>
             <div onClick={navigateToFormResponses}> <BiSolidReport className='responses'  /></div>
+            </div>
         </div>
     )
 
