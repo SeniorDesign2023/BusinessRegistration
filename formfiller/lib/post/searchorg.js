@@ -13,7 +13,9 @@ module.exports = async function seachorg(req, res) {
 
         //Check if already a member or admin
         checkmem = await database.query("SELECT * FROM User_Org WHERE Email = ? AND Org_Tag = ?", [currentUser, result[0].Org_Tag])
-        checkadmin = await database.query("SELECT * FROM Admin_Org WHERE Email = ?", [currentUser, result[0].Org_Tag])
+        checkadmin = await database.query("SELECT * FROM Admin_Org WHERE Email = ? AND Org_Tag = ?", [currentUser, result[0].Org_Tag])
+
+        //console.log(checkmem.length + " " + checkadmin.length);
 
         if(checkmem.length + checkadmin.length > 0){
             //aleady in org
