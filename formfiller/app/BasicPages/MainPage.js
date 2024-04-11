@@ -41,7 +41,7 @@ export default function MainPage({orgName, orgRole, orgTag}) {
     const renderPage = () => {
 
         if (!selectedOrgTag)
-            return <p>Please select an organization.</p>
+            return <p className='please-select'>Please select an organization.</p>
 
         switch(selectedPage) {
             case 'All':
