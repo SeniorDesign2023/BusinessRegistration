@@ -64,7 +64,7 @@ Whole Team
 
     Lucas Eifert: Designed and implemented a MySQL database to hold user profiles, organizations, forms, membership and form assignment.  Integrated the app back-end with database for profile, create organization, a dynamically loading organization sidebar, and admin pages.  
 
-    Miles: 
+    Miles: I focused mainly on the backend, gluing components together and coding the server-side logic to process user data and interacting with the database.
 
 Reflection on your team's ability to design, implement, and evaluate a solution. [20 pt] 
       
