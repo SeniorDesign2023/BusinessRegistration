@@ -6,7 +6,7 @@ Formfiller is a website that allows users to access all their forms from all the
 To use FormFiller follow the following steps:
 1. Go to /Database Stuff
 2. Run ```vagrant up``` (requires Vagrant and VirtualBox)  
-  a. visit http://localhost:18306/phpmyadmin/  
+  a. Visit http://localhost:18306/phpmyadmin/  
   b. Log in with User: dbuser pass: userpass  
   c. Import the latest SQL file
 4. Go to /formfiller
