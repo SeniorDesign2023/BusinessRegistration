@@ -12,3 +12,4 @@ To use FormFiller follow the following steps:
 4. Go to /formfiller
 5. If you have not configured the app, run ```npm install```
 6. Run ```node server.js```
+  a. The site can be accessed at http://localhost:3000/
