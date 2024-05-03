@@ -7,7 +7,7 @@ To use FormFiller follow the following steps:
 1. Go to /Database Stuff
 2. Run ```vagrant up``` (requires Vagrant and VirtualBox)  
   a. Visit http://localhost:18306/phpmyadmin/  
-  b. Log in with User: dbuser pass: userpass  
+  b. Log in with user: dbuser pass: userpass  
   c. Import the latest SQL file
 4. Go to /formfiller
 5. If you have not configured the app, run ```npm install```
